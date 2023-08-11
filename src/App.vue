@@ -4,6 +4,7 @@
 <template>
   <div class="app-w">
     Bulugen-Management
+    {{ app.getConfig('baseUrl') }}
   </div>
 </template>
 
