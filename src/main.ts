@@ -21,6 +21,7 @@ import './assets/fonts/iconfont.css'
     // 三.注册全局组件
     // 四.向根组件绑定全局对象
     uiApp.config.globalProperties.app = window.app
+    uiApp.config.globalProperties.Tools = window.Tools
     // 五.初始化状态管理与路由,并渲染根组件
     uiApp.mount('#app')
 })()
