@@ -54,10 +54,7 @@ export type IFnLpk = (key: string, option?:{index?: number, default?: string}) =
 export const lpk: IFnLpk = (key, option) => {
     const mixValue = tblLpk[key]
     if (isArray(mixValue)){
-        if (!mixValue.length) {
-            return option?.default || key
-        }
-        return mixValue[option?.index || 0] || key
+        return mixValue[option?.index || 0] || option?.default || key
     }
     return mixValue || option?.default || key
 }

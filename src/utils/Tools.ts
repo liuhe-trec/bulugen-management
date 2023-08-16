@@ -1,5 +1,4 @@
 import cookies from 'js-cookie'
-import { type } from 'os'
 
 const iTools = {
     Router: { // 路由操作命名空间
