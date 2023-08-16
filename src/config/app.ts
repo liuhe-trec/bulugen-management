@@ -1,4 +1,5 @@
 import sysCfg, { ISysCfg, ISysCfgBModItem } from './syscfg'
+import appController from '@/controller/AppController'
 
 const app = {
     // 获取系统配置信息
@@ -12,7 +13,10 @@ const app = {
             return true
         }
         return false
-    }
+    },
+    getAppController(){
+        return appController
+    },
 
 }
 
