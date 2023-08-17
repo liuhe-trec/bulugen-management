@@ -2,6 +2,7 @@ import app from './app'
 import Tools from '@/utils/Tools'
 import { lpk,initLpk } from './lpk'
 import { initLoginUserInfo } from '@/controller/AppController'
+import { App } from 'vue'
 
 // 声明全局变量相关的类型
 type IGlobalVarsKey = 'app' | 'lpk' | 'Tools' | 'Ajax'
@@ -26,5 +27,21 @@ export const initApp = async () => {
     // 初始化语言包,import.meta.glob不支持以变量的方式加载数据
     // 所以全部加载,然后再过滤不需要的语言包内容
     initLpk()
+    // 
+    // 初始化业务模块
+    const iAllEntry: GlobalType.IRecord = import.meta.glob('@/bmod/*/entry.ts', {eager: true})
+    for (const path in iAllEntry){
+        const iEntryFile = iAllEntry[path]
+        iEntryFile && iEntryFile.entryInit && await iEntryFile.entryInit()
+    }
+}
+
+export const initGlobalComponents = (uiAPP: App<Element>) => {
+    const iAllGlobalComponents: GlobalType.IRecord = import.meta.glob('@/components/*/src/*.vue', {eager: true})
+    Object.keys(iAllGlobalComponents).map((path: string) => {
+        const paths = path.split('/')
+        const componentName = paths[paths.length - 3]
+        uiAPP.component(componentName, iAllGlobalComponents[path].default)
+    })
 }
 

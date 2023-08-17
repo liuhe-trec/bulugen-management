@@ -46,7 +46,17 @@ yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
 * postcss-pxtorem
 * autoprefixer 自动前缀css
 * sass scss插件
+* unplugin-auto-import
 
 ```readme
-yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass
+yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass nplugin-auto-import
+```
+
+## Vant
+
+UI : <https://github.com/youzan/vant>
+
+```readme
+// 按需加载
+yarn add unplugin-vue-components -D 
 ```

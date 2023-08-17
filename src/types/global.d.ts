@@ -1,6 +1,6 @@
 import { IApp } from '@/config/app'
 import { ITools } from '@/utils/Tools'
-import { IFnLpk } from './config/lpk'
+import { IFnLpk } from '@/config/lpk'
 
 declare global{   // 这是一个全局声明，用于在全局作用域中声明一些类型和变量，使其在整个项目中可用。
     declare namespace GlobalType{  // 这里创建了一个名为GlobalType的命名空间，用来存放全局的类型定义。

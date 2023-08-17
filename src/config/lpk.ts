@@ -1,19 +1,31 @@
 import { get, isArray } from 'lodash'
-import { LOCAL_OPTIONS } from '@/utils/Constants'
+import { LOCALE_OPTIONS } from '@/utils/Constants'
+import { Locale } from 'vant'
+import enUS from 'vant/es/locale/lang/en-US'
 
 const tblLpk: Record<string, string | string[]> = {} //缓存语言包的内容
 
-const localStorageLpkName = 'local'
+const localStorageLpkName = 'locale'
 // 1.初始化语言包
 export const initLpk = () => {
-    mergeLpk(import.meta.glob('@/locals/*', {eager: true}))
+    mergeLpk(import.meta.glob('@/locales/*', {eager: true}))
+    //初始化第三方的语言库
+    initUIFrameWorkLpk()
+}
+
+const initUIFrameWorkLpk = () => {
+    const vantLpk: GlobalType.IRecord = {
+        'en-US': enUS
+    }
+    const locale = getLocale()
+    vantLpk[locale] && Locale.use(locale, vantLpk[locale])
 }
 
 export const getLocale: ()=> string = () => {
-    const defaultLocal = 'zh-CN'
+    const defaultLocale = 'zh-CN'
     // 1.从登陆者自定义信息中心获取语言环境
     // get方法是从json对象中取值,是lodash的方法
-    let language = get(app.getAppController().getLoginUser(), 'cust.local') || defaultLocal
+    let language = get(app.getAppController().getLoginUser(), 'cust.locale') || defaultLocale
     // 2.从本地存储中获取
     language = Tools.LocalStorage.getItem(localStorageLpkName) || language
     // 3.使用默认语言包
@@ -59,14 +71,14 @@ export const lpk: IFnLpk = (key, option) => {
     return mixValue || option?.default || key
 }
 
-export const changeLocal = (newLocal: string) => {
-    if (!LOCAL_OPTIONS.find(localItem => localItem == newLocal)) {
+export const changeLocale = (newLocale: string) => {
+    if (!LOCALE_OPTIONS.find(localItem => localItem == newLocale)) {
         return
     }
     // 1.如果用户已登录,更新用户设置 
     // TODO
     // 2.本地缓存最新语言包
-    Tools.LocalStorage.setItem(localStorageLpkName, newLocal)
+    Tools.LocalStorage.setItem(localStorageLpkName, newLocale)
     // 3.刷新页面,从新加载
     document.location.reload()
 }

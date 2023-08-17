@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { initApp } from '@/config/init'
+import { initApp, initGlobalComponents } from '@/config/init'
 
 // 引入normalize.css 抹平各个浏览器的默认样式
 import 'normalize.css/normalize.css'
@@ -17,10 +17,11 @@ import './assets/fonts/iconfont.css'
     //     1).加载系统当前状态信息
     //     2).加载当前登录用户的个人信息
     // 3.异步加载业务模块,并完成基本的初始化
-    initApp()
+    await initApp()
     // 二.初始化UI
     const uiApp = createApp(App)
-    // 三.注册全局组件
+    // 三.注册全局组件,全局的公共组件
+    initGlobalComponents(uiApp)
     // 四.向根组件绑定全局对象
     uiApp.config.globalProperties.app = window.app
     uiApp.config.globalProperties.Tools = window.Tools

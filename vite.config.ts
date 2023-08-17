@@ -1,13 +1,27 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
+// vant UI 库配置
+import Components from 'unplugin-vue-components/vite';
+import { VantResolver } from 'unplugin-vue-components/resolvers';
+import autoImport from 'unplugin-auto-import/vite'
 import autoprefixer from 'autoprefixer'
 import { resolve } from 'path'
 import postCssPxToRem from 'postcss-pxtorem'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    autoImport({
+      imports: ['vue'],
+      dts: 'src/types/auto-import.d.ts'
+    }),
+    Components({
+      resolvers: [VantResolver()],
+      dts: 'src/types/auto-import-components.d.ts'
+    }),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname,'src') // 配置src根目录的别名

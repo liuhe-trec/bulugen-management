@@ -1,5 +1,5 @@
 import modelUserApi, { IUser } from "@/api/UserApi"
-import { changeLocal } from "@/config/lpk"
+import { changeLocale, mergeLpk } from "@/config/lpk"
 import { LOGIN_TOKEN } from "@/utils/Constants"
 
 let iLoginUser: IUser = {
@@ -17,5 +17,6 @@ export default {
     getLoginUser(): IUser {
         return iLoginUser
     },
-    changeLocal
+    changeLocale,
+    mergeLpk
 }
