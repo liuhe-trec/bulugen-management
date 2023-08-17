@@ -9,6 +9,7 @@ import './assets/styles/black-theme.scss'
 // 引入normalize.css 抹平各个浏览器的默认样式
 import 'normalize.css/normalize.css'
 import './assets/fonts/iconfont.css'
+import { initRouter } from './router'
 // TODO 导入一些全局样式
 
 // 初始化优化,因为初始化要异步调用,所以用自执行函数把他包起来
@@ -31,5 +32,10 @@ import './assets/fonts/iconfont.css'
     uiApp.config.globalProperties.Tools = window.Tools
     uiApp.config.globalProperties.lpk = window.lpk
     // 五.初始化状态管理与路由,并渲染根组件
+    //  1).初始化基础模块
+    //  2).初始化各业务模块的路由配置
+    //  3).初始化路由守卫
+    uiApp.use(initRouter())
+    //  4).keep-alive的使用
     uiApp.mount('#app')
 })()

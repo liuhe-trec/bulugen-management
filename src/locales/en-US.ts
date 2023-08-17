@@ -1,4 +1,4 @@
 export default {
-    "Index" : "Home",
-    "Type" : ['1','2']
+    "page.index.Title": "Home",
+    "page.my.Title": "My",
 }

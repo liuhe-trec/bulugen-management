@@ -1,4 +1,4 @@
 export default {
-    "Index" : "主页123",
-    "Type" : ['1','第二种']
+    "page.index.Title": "首页",
+    "page.my.Title": "我的",
 }
