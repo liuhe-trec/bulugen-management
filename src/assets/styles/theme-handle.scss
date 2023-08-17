@@ -1,0 +1,39 @@
+@import './theme-var.scss';
+
+@mixin def_all_theme {
+    // 循环遍历
+    @each $theme-name, $theme-value in $themes {
+        // 把属性暴露出来
+        $theme-value: $theme-value !global;
+        [data-theme="#{'' + $theme-name}"] & {
+            @content;
+        }
+    }
+}
+
+// 获取确定主题下指定样式的值
+@function get_theme_value($key) {
+    @return map-get($theme-value, $key);
+}
+
+// 通过修改 document.body.setAttribute('data-theme','blue') 来切换
+// 暴露出去,获取背景色,
+@mixin bg($bg: 'primary-bg') {
+    @include def_all_theme{
+        background-color: get_theme_value($bg);
+    }
+}
+
+// 获取color
+@mixin color($color: 'primary-color') {
+    @include def_all_theme{
+        color: get_theme_value($color);
+    }
+}
+
+// 获取字号
+@mixin fontSize($size: 'normal-size') {
+    @include def_all_theme{
+        font-size: get_theme_value($size);
+    }
+}

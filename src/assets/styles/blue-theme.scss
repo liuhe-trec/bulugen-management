@@ -1,0 +1,16 @@
+[data-theme="blue"]{
+    --theme-color-1: #ECF6FD;
+    --theme-color-2: #D2EAFB;
+    --theme-color-3: #ADD8F7;
+    --theme-color-4: #7EC2F3;
+    --theme-color-5: #49A9EE;
+    --theme-color-6: #108EE9; // 设计稿上定义的最深颜色
+    --theme-color-7: #0E77CA;
+    --theme-color-8: #0C60AA;
+    --theme-color-9: #09488A;
+    --theme-color-10: #073069;
+
+    --primary-bg: var(--theme-color-6);
+    --primary-color: var(--color-white-1);
+    --van-button-primary-background: #ea1377;
+}

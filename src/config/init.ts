@@ -3,6 +3,7 @@ import Tools from '@/utils/Tools'
 import { lpk,initLpk } from './lpk'
 import { initLoginUserInfo } from '@/controller/AppController'
 import { App } from 'vue'
+import { initTheme } from './theme'
 
 // 声明全局变量相关的类型
 type IGlobalVarsKey = 'app' | 'lpk' | 'Tools' | 'Ajax'
@@ -24,6 +25,13 @@ export const initApp = async () => {
     // 初始化基础业务相关信息(获取当前登陆者信息等)
     // await 等用户信息获取到了再执行其他
     await initLoginUserInfo()
+
+    // 主题定制
+    // - 方式1:针对不同主题去书写不同的样式文件,在系统初始化时候,去server端进行加载
+    // - 方式2:通过scss变量与scss函数和mixin来实现主题的定制
+    //       通过document.body.setAttribute('data-theme','blue') 来切换主题
+    // - 方式3:通过css变量来实现主题的定制
+    initTheme()
     // 初始化语言包,import.meta.glob不支持以变量的方式加载数据
     // 所以全部加载,然后再过滤不需要的语言包内容
     initLpk()

@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initApp, initGlobalComponents } from '@/config/init'
+// 主题切换用css,采用方法3进行主题切换
+import './assets/styles/base-theme.scss'
+import './assets/styles/blue-theme.scss'
+import './assets/styles/black-theme.scss'
 
 // 引入normalize.css 抹平各个浏览器的默认样式
 import 'normalize.css/normalize.css'
