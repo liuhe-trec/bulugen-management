@@ -5,4 +5,4 @@ export const THEME_OPTIONS = ['blue', 'black'] // 系统主题
 export const EMAIL_PATTERN = ''
 export const MOBILE_PATTERN = ''
 export const ICON_TYPE = {ADD: 'add', EDIT:'edit', REMOVE: 'remove'}
-export const ROUTER_VIEW_KEY = {Index: 'indexRouterView'}
+export const ROUTER_VIEW_KEY = {Index: 'indexRouterView'} // 首页路由标识

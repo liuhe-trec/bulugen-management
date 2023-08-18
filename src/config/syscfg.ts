@@ -13,7 +13,7 @@ const iSysCfg: ISysCfg = {
     baseUrl: 'http://172.18.7.15:8080',
     bmodNames: [{
         name: 'blog',
-        enable: false
+        enable: true
     }]
 }
 

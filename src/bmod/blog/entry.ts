@@ -1,4 +1,5 @@
 import syscfg from "./config/syscfg"
+import { initRoutes } from "./router"
 
 // 业务模块入口
 export const entryInit = async ()=> {
@@ -12,5 +13,6 @@ export const entryInit = async ()=> {
     // 2.初始化当前模块的配置信息
     // 3.初始化当前模块的状态管理信息
     // 4.初始化当前模块的路由信息
+    initRoutes()
 }
 export default {}
