@@ -1,6 +1,6 @@
 // 基础模块的路由配置
 // 收集所有的路由信息
-import { ROUTER_VIEW_KEY } from '@/utils/Constants'
+import { LOGIN_PATH, ROUTER_VIEW_KEY } from '@/utils/Constants'
 import Index from '@/views/Index/Index.vue'
 import { get } from 'lodash'
 import { Router, RouteRecordRaw, createRouter, createWebHistory } from "vue-router"
@@ -41,7 +41,7 @@ export const initRouter: () => Router = () => {
             ]
         },
         {
-            path: '/login',
+            path: LOGIN_PATH,
             name: 'login',
             component: () => import('@/views/Login/Login.vue'),
             meta: {
@@ -72,6 +72,26 @@ export const initRouter: () => Router = () => {
         routes: routers, // 变量名和属性名一致的话可以省略属性名
     })
     // 路由守卫
+    iRouter.beforeEach((to, from, next) => {
+        // 用lodash的get方法取id 可以避免出现getLoginUser是空的时候.id报错
+        const userId = get(app.getAppController().getLoginUser(), 'id', '')
+        if (!userId && to.matched.some(record => false !== get(record, 'meta.requireAuth', true))) {
+            next({
+                path: LOGIN_PATH,
+                query: {
+                    // 这个属性的意思是登录成功之后可以跳转到指定的位置
+                    redirect: to.fullPath
+                }
+            })
+            return
+        }
+        // 已登录.进入登录界面的时候,直接返回到主页
+        if (userId && to.path == LOGIN_PATH) {
+            next('/')
+            return
+        }
+        next()
+    })
     iRouter.afterEach((to, _from) => {
         const title = get(to, 'meta.title', '') as string
         title && (document.title = title)
