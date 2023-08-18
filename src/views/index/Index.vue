@@ -5,7 +5,11 @@
 <template>
     <div class="index-w">
         <div class="title">Index.vue</div>
-        <router-view />
+        <router-view v-slot="{ Component }">
+            <keep-alive :exclude="['my']">
+                <component :is="Component" />
+            </keep-alive>
+        </router-view>
         <ul>
             <li>
                 <router-link :to="{name: 'home'}">{{ lpk('page.index.Title') }}</router-link>

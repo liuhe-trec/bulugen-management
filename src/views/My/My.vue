@@ -5,6 +5,9 @@
 <template>
     <div class="my">
         My
+        <div>
+            <input />
+        </div>
     </div>
 </template>
 
