@@ -6,6 +6,14 @@
     <div class="index-w">
         <div class="title">Index.vue</div>
         <router-view />
+        <ul>
+            <li>
+                <router-link :to="{name: 'home'}">{{ lpk('page.index.Title') }}</router-link>
+            </li>
+            <li>
+                <router-link :to="{name: 'my'}">{{ lpk('page.index.My') }}</router-link>
+            </li>
+        </ul>
     </div>
 </template>
 

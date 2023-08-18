@@ -9,5 +9,7 @@
 </template>
 
 <style lang="scss" scoped>
-
+.home{
+    background-color: #1e00ff55;
+}
 </style>

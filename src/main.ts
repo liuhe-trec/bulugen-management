@@ -11,6 +11,7 @@ import 'normalize.css/normalize.css'
 import './assets/fonts/iconfont.css'
 import { initRouter } from './router'
 // TODO 导入一些全局样式
+import './assets/styles/global.scss'
 
 // 初始化优化,因为初始化要异步调用,所以用自执行函数把他包起来
 (async () => {

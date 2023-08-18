@@ -3,13 +3,11 @@
 </script>
 
 <template>
-    <div class="my">
-        My
+    <div class="not-found">
+        Not Found
     </div>
 </template>
 
 <style lang="scss" scoped>
-.my{
-    background-color: #00ff59;
-}
+
 </style>
