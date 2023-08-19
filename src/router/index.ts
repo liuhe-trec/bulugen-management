@@ -36,6 +36,8 @@ export const initRouter: () => Router = () => {
                     component: () => import('@/views/My/My.vue'),
                     meta: {
                         title: lpk('page.my.Title'),
+                        requireAuth: false,
+                        keepAlive: false
                     }
                 }
             ]
@@ -69,10 +71,10 @@ export const initRouter: () => Router = () => {
     // 创建路由
     const iRouter = createRouter({
         history: createWebHistory(),
-        routes: routers, // 变量名和属性名一致的话可以省略属性名
+        routes: giAllRouters, // 变量名和属性名一致的话可以省略属性名
     })
     // 路由守卫
-    iRouter.beforeEach((to, from, next) => {
+    iRouter.beforeEach((to, _from, next) => {
         // 用lodash的get方法取id 可以避免出现getLoginUser是空的时候.id报错
         const userId = get(app.getAppController().getLoginUser(), 'id', '')
         if (!userId && to.matched.some(record => false !== get(record, 'meta.requireAuth', true))) {

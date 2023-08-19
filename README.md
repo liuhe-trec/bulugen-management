@@ -49,7 +49,7 @@ yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
 * unplugin-auto-import
 
 ```readme
-yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass nplugin-auto-import
+yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import
 ```
 
 ## Vant

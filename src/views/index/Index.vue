@@ -1,15 +1,18 @@
 <script setup lang="ts">
-
+const componentName = getCurrentInstance()?.type.__name
+console.log(componentName)
 </script>
 
 <template>
     <div class="index-w">
         <div class="title">Index.vue</div>
-        <router-view v-slot="{ Component }">
-            <keep-alive :exclude="['my']">
+        <!-- <router-view v-slot="{ Component }">
+            <keep-alive :exclude="['My']">
                 <component :is="Component" />
             </keep-alive>
-        </router-view>
+        </router-view> -->
+        <!-- <router-view></router-view> -->
+        <keep-alive-router-view></keep-alive-router-view>
         <ul>
             <li>
                 <router-link :to="{name: 'home'}">{{ lpk('page.index.Title') }}</router-link>
