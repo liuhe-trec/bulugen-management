@@ -1,6 +1,21 @@
 import cookies from 'js-cookie'
+//防止请求被缓存的随机数
+const cachePreventRandom = Math.random()
+let cachePreventNum = 0
 
 const iTools = {
+    //显示全局遮罩
+    showLoadMask(){
+        console.log('showLoadMask')
+    },
+    hideLoadMask(){
+        console.log('hideLoadMask')
+    },
+    addCachePrevent(url: string = ''): string {
+        const queryString = url.indexOf('?')
+        url += (-1 == queryString ? '?' : '&') + 'cp=' + (cachePreventNum++ + cachePreventRandom)
+        return url
+    },
     Router: { // 路由操作命名空间
 
     },
