@@ -10,7 +10,7 @@ export interface ISysCfg{
 }
 
 const iSysCfg: ISysCfg = {
-    baseUrl: 'http://172.18.7.15:8080',
+    baseUrl: 'http://127.0.0.1:5173',
     bmodNames: [{
         name: 'blog',
         enable: true

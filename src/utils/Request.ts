@@ -53,7 +53,7 @@ axiosInstance.interceptors.response.use((res: AxiosResponse) => {
                 return Promise.reject(data)
             }
         }
-        return Promise
+        return data
     } else {
         // http status != 200
         return Promise.reject(data)

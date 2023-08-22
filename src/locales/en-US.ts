@@ -4,4 +4,5 @@ export default {
     "page.my.Title": "My",
     "page.login.Title": "Login",
     "page.login.Regist": "Regist",
+    "err.user.load": "loading user's data failed",
 }

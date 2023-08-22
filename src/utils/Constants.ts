@@ -6,3 +6,11 @@ export const EMAIL_PATTERN = ''
 export const MOBILE_PATTERN = ''
 export const ICON_TYPE = {ADD: 'add', EDIT:'edit', REMOVE: 'remove'}
 export const ROUTER_VIEW_KEY = {Index: 'indexRouterView'} // 首页路由标识
+export enum APIMethods {
+    GET = 'get',
+    LIST = 'list',
+    POST = 'post',
+    PUT = 'put',
+    PATCH = 'patch',
+    DELETE = 'delete'
+}

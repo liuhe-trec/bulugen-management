@@ -1,4 +1,5 @@
 import cookies from 'js-cookie'
+import { IResponse } from './Request'
 //防止请求被缓存的随机数
 const cachePreventRandom = Math.random()
 let cachePreventNum = 0
@@ -15,6 +16,25 @@ const iTools = {
         const queryString = url.indexOf('?')
         url += (-1 == queryString ? '?' : '&') + 'cp=' + (cachePreventNum++ + cachePreventRandom)
         return url
+    },
+    showError(title: string = '', msg: string = '') {
+        alert(`${title}: ${msg}`)
+    },
+    processApiError(
+        title: string, 
+        res: (string | {msg: string}), 
+        options: {isShowInfo: boolean} = {isShowInfo: true}) {  //处理api调用错误
+            if ('string' == typeof res) {
+                res = { msg: res }
+            }
+            title = lpk(title)
+            const content = lpk(res.msg) || ''
+            if (false !== options.isShowInfo) {
+                Tools.showError(title, content)
+            }
+            window.console && window.console.log && console.log(res)
+            const errorInfo = `${title}:${content}`
+            throw errorInfo
     },
     Router: { // 路由操作命名空间
 
