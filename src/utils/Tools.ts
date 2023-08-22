@@ -1,5 +1,4 @@
 import cookies from 'js-cookie'
-import { IResponse } from './Request'
 //防止请求被缓存的随机数
 const cachePreventRandom = Math.random()
 let cachePreventNum = 0

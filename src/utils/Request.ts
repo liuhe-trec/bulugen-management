@@ -1,7 +1,7 @@
 // 基于Axios实现Ajax请求的封装
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios"
 import qs from 'qs'
-import { LOGIN_TOKEN } from "./Constants"
+import { APIMethods, LOGIN_TOKEN } from "./Constants"
 import { get } from "lodash"
 import app from "@/config/app"
 
@@ -28,9 +28,11 @@ const axiosInstance: AxiosInstance = axios.create({
     timeout: 10000,
 })
 
-const getMethods: string[] = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE']
+const getMethods: string[] = [APIMethods.GET, APIMethods.POST, APIMethods.PATCH, APIMethods.PUT, APIMethods.DELETE].map(method => {
+    return method.toUpperCase()
+})
 // 定义常用请求方法
-type IAjaxMethod = 'get' | 'post' | 'patch' | 'put' | 'delete'
+type IAjaxMethod = APIMethods.GET | APIMethods.POST | APIMethods.PATCH | APIMethods.PUT | APIMethods.DELETE
 type IFnAjaxMethodHandler = <T = any>(reqParams: AxiosRequestConfigExt) => Promise<IResponse<T>>
 
 // 响应拦截器
@@ -97,7 +99,6 @@ const Ajax = {
             isNeedCachePrevent,
             isNeedJsonStringify,
             isNeedQSStringfy,
-            is401ToLogin,
         } = reqParams
         // 判断是否需要显示loading
         if (false !== showLoading) {

@@ -6,8 +6,8 @@ console.log(componentName)
 onMounted(async () => {
     const iUser = await userApi.get({id:2})
     console.log('huo qu dao', iUser)
-    const iUserList = await userApi.list({nPageSize: 2})
-    console.log('获取用户列表', iUserList)
+    // const iUserList = await userApi.list({nPageSize: 2})
+    // console.log('获取用户列表', iUserList)
 })
 </script>
 

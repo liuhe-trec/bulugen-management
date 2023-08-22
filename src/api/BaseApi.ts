@@ -52,16 +52,16 @@ export default {
                             items: []
                         }
                         return Ajax.get<T>({
-                            ...transferUrlAndParams('list', get(initParams, 'uri.list'), params)
+                            ...transferUrlAndParams(method, get(initParams, `uri.${method}`), params)
                         }).then(res => {
-                            const { total, items = [] } = res.data as BaseAPIType.IListResult<T>
+                            const { total, items = [] } = res.data as unknown as BaseAPIType.IListResult<T>
                             iResult.total = total
                             iResult.items = initParams.mapper ? items.map(item => {
                                 return initParams.mapper!(item)
                             }) : items
                             return iResult
                         }).catch((e) => {
-                            Tools.processApiError(get(initParams, 'uri.list.errMsg'), e)
+                            Tools.processApiError(get(initParams, `uri.${method}.errMsg`), e)
                             return iResult
                         })
                     }
@@ -83,6 +83,6 @@ export default {
                 break
             }
         })
-        return allMethods as R
+        return allMethods as unknown as R
     }
 }
