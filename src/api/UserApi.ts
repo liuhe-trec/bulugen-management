@@ -32,7 +32,7 @@ const initBaseAPIParams: BaseAPIType.IInitParams = {
 }
 
 export default {
-    ...baseApi.initApi<IUser, Pick<BaseAPIType.IAllowMethods<IUser>, APIMethods.GET | APIMethods.POST>>(initBaseAPIParams),
+    ...baseApi.initApi<IUser, Pick<BaseAPIType.IAllowMethods<IUser>, APIMethods.GET | APIMethods.LIST>>(initBaseAPIParams),
     getSelfInfo(): Promise<IUser> {
         return Promise.resolve({
             id: 1,
