@@ -5,11 +5,11 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 export {}
 
-declare module "vue" {
+declare module 'vue' {
   export interface GlobalComponents {
-    Icon: typeof import("./../components/Icon/src/Icon.vue")["default"];
-    KeepAliveRouterView: typeof import("./../components/KeepAliveRouterView/src/KeepAliveRouterView.vue")["default"];
-    RouterLink: typeof import("vue-router")["RouterLink"];
-    RouterView: typeof import("vue-router")["RouterView"];
+    Icon: typeof import('./../components/Icon/src/Icon.vue')['default']
+    KeepAliveRouterView: typeof import('./../components/KeepAliveRouterView/src/KeepAliveRouterView.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }

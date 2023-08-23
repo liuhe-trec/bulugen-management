@@ -1,5 +1,6 @@
 import { get, isArray } from "lodash";
 import { LOCALE_OPTIONS } from "@/utils/Constants";
+//vant language config
 // import { Locale } from "vant";
 // import enUS from "vant/es/locale/lang/en-US";
 
@@ -14,6 +15,7 @@ export const initLpk = () => {
 };
 
 const initUIFrameWorkLpk = () => {
+  // vant config
   // const vantLpk: GlobalType.IRecord = {
   //   "en-US": enUS,
   // };
