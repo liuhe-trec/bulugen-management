@@ -7,7 +7,7 @@ This template should help get you started developing with Vue 3 and TypeScript i
 Use yarn
 
 1. Create Project
-  
+
 ```readme
 yarn create vite
 ```
@@ -21,32 +21,32 @@ yarn dev
 
 ## plugins
 
-* dependencies
-* axios
-* js-cookie: 管理coodie
-* lodash: 基础方法工具包
-* nanoid: 随机字符串生成
-* normalize.css 处理样式
-* pinia 状态管理
-* qs 格式组织
-* vant UI库
-* vue-router 路由
+- dependencies
+- axios
+- js-cookie: 管理 coodie
+- lodash: 基础方法工具包
+- nanoid: 随机字符串生成
+- normalize.css 处理样式
+- pinia 状态管理
+- qs 格式组织
+- vant UI 库
+- vue-router 路由
 
 ```readme
 yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
 ```
 
-* dev-dependencies
-* @types/node
-* @types/js-cookie
-* @types/lodash
-* @types/qs
-* postcss
-* postcss-modules
-* postcss-pxtorem
-* autoprefixer 自动前缀css
-* sass scss插件
-* unplugin-auto-import
+- dev-dependencies
+- @types/node
+- @types/js-cookie
+- @types/lodash
+- @types/qs
+- postcss
+- postcss-modules
+- postcss-pxtorem
+- autoprefixer 自动前缀 css
+- sass scss 插件
+- unplugin-auto-import
 
 ```readme
 yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import
@@ -58,5 +58,5 @@ UI : <https://github.com/youzan/vant>
 
 ```readme
 // 按需加载
-yarn add unplugin-vue-components -D 
+yarn add unplugin-vue-components -D
 ```
