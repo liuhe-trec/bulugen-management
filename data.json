@@ -1,14 +1,17 @@
 {
-    "code": 200,
-    "data": {
-        "total": 100,
-        "items": [{
-            "id": 1,
-            "name": "zs"
-        },{
-            "id": 2,
-            "name": "zl"
-        }]
-    },
-    "message": "成功"
+  "code": 200,
+  "data": {
+    "total": 100,
+    "items": [
+      {
+        "id": 1,
+        "name": "zs"
+      },
+      {
+        "id": 2,
+        "name": "zl"
+      }
+    ]
+  },
+  "message": "成功"
 }

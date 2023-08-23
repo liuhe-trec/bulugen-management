@@ -1,19 +1,17 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div class="app-w">
-        <div class="title">App.vue</div>
-        <router-view />
-    </div>
+  <div class="app-w">
+    <div class="title">App.vue</div>
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.app-w{
-  background-color: #F00;
+.app-w {
+  background-color: #f00;
   padding: 30px;
-  .title{
+  .title {
     margin: 30px;
   }
 }

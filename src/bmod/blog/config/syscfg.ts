@@ -1,3 +1,3 @@
 export default {
-    moduleName: 'blog'
-}
+  moduleName: "blog",
+};

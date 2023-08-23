@@ -3,11 +3,7 @@
 </script>
 
 <template>
-    <div class="blog-index">
-        BLOG Index
-    </div>
+  <div class="blog-index">BLOG Index</div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
