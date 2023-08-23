@@ -1,7 +1,7 @@
 import { get, isArray } from "lodash";
 import { LOCALE_OPTIONS } from "@/utils/Constants";
-import { Locale } from "vant";
-import enUS from "vant/es/locale/lang/en-US";
+// import { Locale } from "vant";
+// import enUS from "vant/es/locale/lang/en-US";
 
 const tblLpk: Record<string, string | string[]> = {}; //缓存语言包的内容
 
@@ -14,11 +14,11 @@ export const initLpk = () => {
 };
 
 const initUIFrameWorkLpk = () => {
-  const vantLpk: GlobalType.IRecord = {
-    "en-US": enUS,
-  };
-  const locale = getLocale();
-  vantLpk[locale] && Locale.use(locale, vantLpk[locale]);
+  // const vantLpk: GlobalType.IRecord = {
+  //   "en-US": enUS,
+  // };
+  // const locale = getLocale();
+  // vantLpk[locale] && Locale.use(locale, vantLpk[locale]);
 };
 
 export const getLocale: () => string = () => {

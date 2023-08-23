@@ -8,16 +8,22 @@ Use yarn
 
 1. Create Project
 
-```readme
-yarn create vite
-```
+   ```readme
+   yarn create vite
+   ```
 
 2. install dependent
 
-```readme
-yarn
-yarn dev
-```
+   ```readme
+   yarn
+   yarn dev
+   ```
+
+3. remove dependent
+
+   ```readme
+   yarn remove vant
+   ```
 
 ## plugins
 
@@ -52,9 +58,11 @@ yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
 yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import
 ```
 
-## Vant
+## 组件库
 
-UI : <https://github.com/youzan/vant>
+Vant(移动端) : <https://github.com/youzan/vant>
+
+Element Plus: <https://element-plus.org/>
 
 ```readme
 // 按需加载
