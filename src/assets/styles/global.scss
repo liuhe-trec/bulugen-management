@@ -1,19 +1,4 @@
-/*flex: row, colum,m布局*/
-.g-flex-rsc, .g-flex-rec, .g-flex-rce, .g-flex-rcc, .g-flex-rsbc, .g-flex-rsbe,
-.g-flex-rsac, .g-flex-rsbs, .g-flex-rss, .g-flex-csc, .g-flex-ccc, .g-flex-csbc,
-.g-flex-csbs, .g-flex-csac, .g-flex-ccs{
-    display: flex;
-    align-items: center;
-}
-
-.g-flex-csc, .g-flex-ccc, .g-flex-csbc, .g-flex-csbs, .g-flex-csac, .g-flex-ccs{
-    flex-direction: column;
-}
-
-.g-flex-rsc, .g-flex-rss, .g-flex-csc{
-    justify-content: flex-start;
-}
-
-.g-flex-rec{
-    justify-content: flex-end;
+body {
+  width: 100%;
+  height: 100%;
 }
