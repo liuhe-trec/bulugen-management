@@ -38,7 +38,8 @@ export default {
   >(initBaseAPIParams),
   getSelfInfo(): Promise<IUser> {
     return Promise.resolve({
-      id: 1,
+      // 校验跳转到登录画面
+      // id: 1,
       name: "zs",
     });
   },

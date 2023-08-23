@@ -31,7 +31,7 @@ export const initRouter: () => Router = () => {
           name: "home",
           component: () => import("@/views/Index/Home.vue"),
           meta: {
-            requireAuth: false,
+            requireAuth: true,
           },
         },
         {
