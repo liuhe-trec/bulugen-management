@@ -53,9 +53,14 @@ yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
 - autoprefixer 自动前缀 css
 - sass scss 插件
 - unplugin-auto-import
+- eslint 代码检查工具
+- eslint-plugin-import 代码检查工具
+- eslint-plugin-vue 代码检查工具
+- eslint-plugin-node 代码检查工具
+- @babel/eslint-parser 代码检查工具
 
 ```readme
-yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import
+yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import eslint eslint-plugin-import eslint-plugin-vue eslint-plugin-node @babel/eslint-parser
 ```
 
 ## 组件库

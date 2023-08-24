@@ -46,7 +46,7 @@ type IAjaxMethod =
   | APIMethods.DELETE;
 
 type IFnAjaxMethodHandler = <T = any>(
-  reqParams: AxiosRequestConfigExt
+  reqParams: AxiosRequestConfigExt,
 ) => Promise<IResponse<T>>;
 
 // 响应拦截器
@@ -80,17 +80,17 @@ axiosInstance.interceptors.response.use(
     // 清除加载loading 计时器
     clearTimeout(timerLoading);
     Tools.hideLoadMask();
-    let { message = "Request Error", response } = error;
+    const { message = "Request Error", response } = error;
     const errMsg = get(response, "data.msg", message);
     return Promise.reject({ msg: errMsg });
-  }
+  },
 );
 
 // 绑定多种请求类型方法
 const iAllMethods: { [key in IAjaxMethod]: IFnAjaxMethodHandler } = {} as any;
 getMethods.map((method) => {
   const fnHandler: IFnAjaxMethodHandler = <T = any>(
-    reqParams: AxiosRequestConfigExt | string
+    reqParams: AxiosRequestConfigExt | string,
   ): Promise<IResponse<T>> => {
     if ("GET" == method) {
       if ("string" === typeof reqParams) {
@@ -109,12 +109,11 @@ const Ajax = {
   ...iAllMethods,
   request<T = any>(
     method: string,
-    reqParams: AxiosRequestConfigExt
+    reqParams: AxiosRequestConfigExt,
   ): Promise<IResponse<T>> {
     // 获取请求参数
-    let {
-      url,
-      params,
+    let { url, params } = reqParams;
+    const {
       headers = {},
       timeout,
       showLoading,

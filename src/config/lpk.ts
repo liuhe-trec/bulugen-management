@@ -67,7 +67,7 @@ export const mergeLpk = (importLpkFiles: ILpkFile) => {
 };
 export type IFnLpk = (
   key: string,
-  option?: { index?: number; default?: string }
+  option?: { index?: number; default?: string },
 ) => string;
 export const lpk: IFnLpk = (key, option) => {
   const mixValue = tblLpk[key];

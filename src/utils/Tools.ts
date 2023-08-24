@@ -25,7 +25,7 @@ const iTools = {
   processApiError(
     title: string,
     res: string | { msg: string },
-    options: { isShowInfo: boolean } = { isShowInfo: true }
+    options: { isShowInfo: boolean } = { isShowInfo: true },
   ) {
     //处理api调用错误
     if ("string" == typeof res) {

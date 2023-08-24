@@ -5,7 +5,7 @@ import { get } from "lodash";
 type IFnUrlAndParamsTransfer = (
   type: string,
   uriItem: BaseAPIType.IURIItem,
-  params: GlobalType.IRecord
+  params: GlobalType.IRecord,
 ) => {
   url: string;
   params: GlobalType.IRecord;
@@ -13,7 +13,7 @@ type IFnUrlAndParamsTransfer = (
 const transferUrlAndParams: IFnUrlAndParamsTransfer = (
   type,
   uriItem,
-  params = {}
+  params = {},
 ) => {
   let url = uriItem.path;
   if ("get" === type || "delete" === type) {
@@ -30,7 +30,7 @@ const transferUrlAndParams: IFnUrlAndParamsTransfer = (
 
 export default {
   initApi<T = any, R = BaseAPIType.IAllowMethods<T>>(
-    initParams: BaseAPIType.IInitParams<T>
+    initParams: BaseAPIType.IInitParams<T>,
   ): R {
     const allMethods: BaseAPIType.IAllowMethods<T> = {} as any;
     [
@@ -49,7 +49,7 @@ export default {
                 ...transferUrlAndParams(
                   "get",
                   get(initParams, "uri.get"),
-                  params
+                  params,
                 ),
               })
                 .then((res) => {
@@ -67,7 +67,7 @@ export default {
         case APIMethods.LIST:
           {
             allMethods[method] = (
-              params: GlobalType.IRecord
+              params: GlobalType.IRecord,
             ): Promise<BaseAPIType.IListResult<T>> => {
               const iResult: BaseAPIType.IListResult<T> = {
                 total: 0,
@@ -77,7 +77,7 @@ export default {
                 ...transferUrlAndParams(
                   method,
                   get(initParams, `uri.${method}`),
-                  params
+                  params,
                 ),
               })
                 .then((res) => {
@@ -94,7 +94,7 @@ export default {
                 .catch((e) => {
                   Tools.processApiError(
                     get(initParams, `uri.${method}.errMsg`),
-                    e
+                    e,
                   );
                   return iResult;
                 });
@@ -107,18 +107,18 @@ export default {
         case APIMethods.DELETE:
           {
             allMethods[method] = (
-              params: GlobalType.IRecord
+              params: GlobalType.IRecord,
             ): Promise<IResponse> => {
               return Ajax[method]<T>({
                 ...transferUrlAndParams(
                   method,
                   get(initParams, `uri.${method}`),
-                  params
+                  params,
                 ),
               }).catch((e) => {
                 Tools.processApiError(
                   get(initParams, `uri.${method}.errMsg`),
-                  e
+                  e,
                 );
                 return {} as IResponse;
               });

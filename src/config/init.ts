@@ -52,7 +52,7 @@ export const initApp = async () => {
 export const initGlobalComponents = (uiAPP: App<Element>) => {
   const iAllGlobalComponents: GlobalType.IRecord = import.meta.glob(
     "@/components/*/src/*.vue",
-    { eager: true }
+    { eager: true },
   );
   Object.keys(iAllGlobalComponents).map((path: string) => {
     const paths = path.split("/");

@@ -88,7 +88,7 @@ export const initRouter: () => Router = () => {
     if (
       !userId &&
       to.matched.some(
-        (record) => false !== get(record, "meta.requireAuth", true)
+        (record) => false !== get(record, "meta.requireAuth", true),
       )
     ) {
       next({
@@ -107,6 +107,7 @@ export const initRouter: () => Router = () => {
     }
     next();
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   iRouter.afterEach((to, _from) => {
     const title = get(to, "meta.title", "") as string;
     title && (document.title = title);
