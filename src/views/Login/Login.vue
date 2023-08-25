@@ -2,12 +2,34 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
 import useUserStore from "@/store/modules/user"
+import type { IUserLogin } from '@/api/UserApi';
+import $router from '@/router'
+import { ElNotification } from 'element-plus';
 let userStore = useUserStore()
 // 收集账号和密码信息
 let loginForm = reactive({ username: 'admin', password: '123456' })
+let loginLoading = ref(false)
 
-const loginAction = () => {
-  userStore.userLogin()
+const loginAction = async () => {
+  loginLoading.value = true
+  const userLoginParam: IUserLogin = {
+    username: loginForm.username,
+    password: loginForm.password
+  }
+  try {
+    await userStore.userLogin(userLoginParam)
+    loginLoading.value = false
+    // $router.push('/regist')
+    // 登录成功的提示信息
+    ElNotification({
+      title: 'Success',
+      type: 'success',
+      message: '登录成功!'
+    })
+  } catch (error) {
+    loginLoading.value = false
+    console.log(error)
+  }
 }
 </script>
 
@@ -34,7 +56,7 @@ const loginAction = () => {
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login_btn" @click="loginAction">登录</el-button>
+            <el-button type="primary" :loading="loginLoading" class="login_btn" @click="loginAction">登录</el-button>
           </el-form-item>
         </el-form>
       </el-col>

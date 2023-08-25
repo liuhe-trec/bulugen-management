@@ -13,7 +13,7 @@ import {
 type RouteRecordRawExt = RouteRecordRaw & { children?: RouteRecordRawExt[] }
 let giAllRouters: RouteRecordRawExt[] = []
 
-export const initRouter: () => Router = () => {
+const initRouter: () => Router = () => {
   let routers: RouteRecordRawExt[] = constantRoute
   // 聚合业务模块的路由信息
   routers = routers.concat(app.getAllBModRoutes())
@@ -96,3 +96,6 @@ const gatherBelongToRoute = () => {
   }
   giAllRouters.map((item) => _Do(item, giAllRouters))
 }
+
+const MyRouter = initRouter()
+export default MyRouter

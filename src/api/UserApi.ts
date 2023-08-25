@@ -1,17 +1,22 @@
-import { get } from "lodash";
-import baseApi from "./BaseApi";
-import { APIMethods } from "@/utils/Constants";
+import { get } from 'lodash'
+import baseApi from './BaseApi'
+import { APIMethods } from '@/utils/Constants'
 
 export interface IUser {
-  id: number;
-  name: string;
+  id: number
+  name: string
+}
+
+export interface IUserLogin {
+  username: string
+  password: string
 }
 
 const initBaseAPIParams: BaseAPIType.IInitParams = {
   uri: {
     [APIMethods.GET]: {
-      path: "/data_get.json",
-      errMsg: "err.user.load",
+      path: '/data_get.json',
+      errMsg: 'err.user.load'
       // fnUrlTransfer(_url, _params) {
       //     return 'abcdefg'
       // },
@@ -21,15 +26,15 @@ const initBaseAPIParams: BaseAPIType.IInitParams = {
       //     }
       // }
     },
-    [APIMethods.LIST]: { path: "/data.json", errMsg: "err.user.load" },
+    [APIMethods.LIST]: { path: '/data.json', errMsg: 'err.user.load' }
   },
   mapper(item: GlobalType.IRecord): IUser {
     return {
-      id: get(item, "id"),
-      name: get(item, "name"),
-    };
-  },
-};
+      id: get(item, 'id'),
+      name: get(item, 'name')
+    }
+  }
+}
 
 export default {
   ...baseApi.initApi<
@@ -39,8 +44,16 @@ export default {
   getSelfInfo(): Promise<IUser> {
     return Promise.resolve({
       // 校验跳转到登录画面
-      // id: 1,
-      name: "zs",
-    });
+      id: 1,
+      name: 'zs'
+    })
   },
-};
+  userLoginRequest(): Promise<IUser> {
+    setTimeout
+    return Promise.resolve({
+      // 校验跳转到登录画面
+      id: 1,
+      name: 'zs'
+    })
+  }
+}
