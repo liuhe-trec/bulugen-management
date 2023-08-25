@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
+import useUserStore from "@/store/modules/user"
+let userStore = useUserStore()
 // 收集账号和密码信息
 let loginForm = reactive({ username: 'admin', password: '123456' })
 
 const loginAction = () => {
-  console.log('login')
+  userStore.userLogin()
 }
 </script>
 

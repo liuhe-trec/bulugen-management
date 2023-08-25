@@ -5,7 +5,8 @@ import { initApp, initGlobalComponents } from '@/config/init'
 import './assets/styles/base-theme.scss'
 import './assets/styles/blue-theme.scss'
 import './assets/styles/black-theme.scss'
-
+// 导入仓库大菠萝pinia
+import pinia from './store'
 // 引入normalize.css 抹平各个浏览器的默认样式
 import 'normalize.css/normalize.css'
 import './assets/styles/global.scss'
@@ -45,6 +46,7 @@ import { initRouter } from './router'
   //  2).初始化各业务模块的路由配置
   //  3).初始化路由守卫
   uiApp.use(initRouter())
+  uiApp.use(pinia)
   //  4).keep-alive的使用
   uiApp.mount('#app')
 })()
