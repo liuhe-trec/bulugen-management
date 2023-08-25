@@ -37,6 +37,7 @@ Use yarn
 - qs 格式组织
 - vant UI 库
 - vue-router 路由
+- pinia 数据仓库
 
 ```readme
 yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
@@ -58,16 +59,22 @@ yarn add -S axios js-cookie lodash nanoid normalize.css pinia qs vant vue-router
 - eslint-plugin-vue 代码检查工具
 - eslint-plugin-node 代码检查工具
 - @babel/eslint-parser 代码检查工具
+- @babel/core 代码检查工具
 
 ```readme
-yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import eslint eslint-plugin-import eslint-plugin-vue eslint-plugin-node @babel/eslint-parser
+yarn add -D @types/node @types/js-cookie @types/lodash @types/qs @types/postcss-pxtorem postcss postcss-modules postcss-pxtorem autoprefixer sass unplugin-auto-import eslint eslint-plugin-import eslint-plugin-vue eslint-plugin-node @babel/eslint-parser @babel/core
 ```
 
 ## 组件库
 
-Vant(移动端) : <https://github.com/youzan/vant>
+- Vant(移动端) : <https://github.com/youzan/vant>
+- Element Plus: <https://element-plus.org/>
+- Element的Icon图标
+- MOCK数据 vite-plugin-mock:提供本地和生产服务数据
 
-Element Plus: <https://element-plus.org/>
+  ```readme
+  yarn add vite-plugin-svg-icons -D
+  ```
 
 ```readme
 // 按需加载

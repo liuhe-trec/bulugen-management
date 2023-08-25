@@ -31,5 +31,6 @@ module.exports = {
     "no-multiple-empty-lines": ["warn", { max: 1 }], // 不允许多个空格
     "no-useless-escape": "off", //禁止不需要的转义字符
     "@typescript-eslint/no-explicit-any": ["off"],
+    "vue/multi-word-component-names":"off",
   },
 };
