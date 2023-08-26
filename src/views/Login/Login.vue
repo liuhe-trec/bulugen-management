@@ -19,7 +19,7 @@ const loginAction = async () => {
   try {
     await userStore.userLogin(userLoginParam)
     loginLoading.value = false
-    // $router.push('/regist')
+    $router.push('/regist')
     // 登录成功的提示信息
     ElNotification({
       title: 'Success',
