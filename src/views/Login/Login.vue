@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
-import useUserStore from "@/store/modules/user"
-import type { IUserLogin } from '@/api/UserApi';
+import useUserStore from '@/store/modules/user'
+import type { IUserLogin } from '@/api/UserApi'
 import $router from '@/router'
-import { ElNotification } from 'element-plus';
+import { ElNotification } from 'element-plus'
 let userStore = useUserStore()
 // 收集账号和密码信息
 let loginForm = reactive({ username: 'admin', password: '123456' })
@@ -22,7 +22,7 @@ const loginAction = async () => {
     $router.push('/regist')
     // 登录成功的提示信息
     ElNotification({
-      title: 'Success',
+      title: `HI,${Tools.Time.getTimeMsg()}好!`,
       type: 'success',
       message: '登录成功!'
     })
@@ -56,7 +56,13 @@ const loginAction = async () => {
             ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" :loading="loginLoading" class="login_btn" @click="loginAction">登录</el-button>
+            <el-button
+              type="primary"
+              :loading="loginLoading"
+              class="login_btn"
+              @click="loginAction"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
       </el-col>
