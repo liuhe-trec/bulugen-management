@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initApp, initGlobalComponents } from '@/config/init'
-import $router from './router'
 // 导入仓库大菠萝pinia
 import pinia from './store'
 
@@ -11,14 +10,13 @@ import './assets/styles/blue-theme.scss'
 import './assets/styles/black-theme.scss'
 // 引入normalize.css 抹平各个浏览器的默认样式
 import 'normalize.css/normalize.css'
-import './assets/styles/global.scss'
-import './assets/fonts/iconfont.css'
+import '@/assets/styles/index.scss'
 // 导入一些全局样式,Element plus 自动引入会css丢失,所以单独引用下
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/el-loading.css'
 import 'element-plus/theme-chalk/el-message.css'
 import 'element-plus/theme-chalk/el-notification.css'
-
+import { initRouter } from './router'
 // 初始化优化,因为初始化要异步调用,所以用自执行函数把他包起来
 ;(async () => {
   // 通过这个可以获取环境变量 import.meta.env
@@ -50,7 +48,7 @@ import 'element-plus/theme-chalk/el-notification.css'
   //  1).初始化基础模块
   //  2).初始化各业务模块的路由配置
   //  3).初始化路由守卫
-  uiApp.use($router)
+  uiApp.use(initRouter())
   uiApp.use(pinia)
   //  4).keep-alive的使用
   uiApp.mount('#app')

@@ -1,49 +1,59 @@
 <script setup lang="ts">
-import userApi from "@/api/UserApi";
-
-const componentName = getCurrentInstance()?.type.__name;
-console.log(componentName);
-onMounted(async () => {
-  const iUser = await userApi.get({ id: 2 });
-  console.log("huo qu dao", iUser);
-  const iUserList = await userApi.list({ nPageSize: 2 });
-  console.log("获取用户列表", iUserList);
-});
+import Logo from './Logo/Logo.vue'
 </script>
 
 <template>
-  <div class="index-w">
-    <div class="title">Index.vue</div>
-    <!-- <router-view v-slot="{ Component }">
-            <keep-alive :exclude="['My']">
-                <component :is="Component" />
-            </keep-alive>
-        </router-view> -->
-    <!-- <router-view></router-view> -->
-    <keep-alive-router-view></keep-alive-router-view>
-    <ul>
-      <li>
-        <router-link :to="{ name: 'home' }">{{
-          lpk("page.index.Title")
-        }}</router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'blogIndex' }">{{ lpk("Blog") }}</router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'my' }">{{
-          lpk("page.index.My")
-        }}</router-link>
-      </li>
-    </ul>
+  <div class="layout-container">
+    <!-- 左侧菜单 -->
+    <div class="layout-slider">
+      <!-- logo图标 -->
+      <Logo />
+      <!-- 展示菜单 -->
+      <el-scrollbar height="400px" class="scrollbar">
+        <!-- 滚动组件 -->
+        
+      </el-scrollbar>
+    </div>
+    <!-- 顶部导航 -->
+    <div class="layout-tabbar">456</div>
+    <!-- 内容展示区域 -->
+    <div class="layout-main">
+      <p style="height: 10000px; background: red">main context</p>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.index-w {
-  background-color: #ff0;
-  .title {
-    margin: 30px;
+.layout-container {
+  width: 100%;
+  height: 100vh;
+  background: green;
+  .layout-slider {
+    width: $base-menu-width;
+    height: 100vh;
+    background: var(--primary-bg);
+    .scrollbar {
+      width: 100%;
+      height: calc(100vh - $base-menu-logo-height - 20px);
+    }
+  }
+  .layout-tabbar {
+    width: calc(100% - $base-menu-width);
+    height: $base-tabbar-height;
+    background: chocolate;
+    position: absolute;
+    top: 0;
+    left: $base-menu-width;
+  }
+  .layout-main {
+    width: calc(100% - $base-menu-width - 40px);
+    height: calc(100vh - $base-tabbar-height - 40px);
+    background: purple;
+    position: absolute;
+    left: $base-menu-width;
+    top: $base-tabbar-height;
+    padding: 20px;
+    overflow: auto;
   }
 }
 </style>

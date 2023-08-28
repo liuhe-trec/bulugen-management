@@ -1,4 +1,5 @@
 import cookies from 'js-cookie'
+import $router from '@/router/index'
 //防止请求被缓存的随机数
 const cachePreventRandom = Math.random()
 let cachePreventNum = 0
@@ -42,6 +43,9 @@ const iTools = {
   },
   Router: {
     // 路由操作命名空间
+    pushToRgistPage() {
+      $router.getGlobalRouter()!.push('/')
+    }
   },
   Store: {
     // 状态管理操作命名空间
@@ -85,11 +89,11 @@ const iTools = {
     getTimeMsg() {
       let msg: string = ''
       const hour = new Date().getHours()
-      if (hour <= 9) {
+      if (hour <= 8) {
         msg = '早上'
-      } else if (hour <= 12) {
+      } else if (hour <= 11) {
         msg = '上午'
-      } else if (hour <= 18) {
+      } else if (hour <= 17) {
         msg = '下午'
       } else {
         msg = '晚上'
@@ -102,6 +106,6 @@ const iTools = {
   }
 }
 
-export type iTools = typeof iTools
+export type ITools = typeof iTools
 
 export default iTools

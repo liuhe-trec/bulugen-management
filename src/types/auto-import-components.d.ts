@@ -14,6 +14,7 @@ declare module 'vue' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     Icon: typeof import('./../components/Icon/src/Icon.vue')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
     KeepAliveRouterView: typeof import('./../components/KeepAliveRouterView/src/KeepAliveRouterView.vue')['default']

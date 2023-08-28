@@ -1,7 +1,6 @@
 // 基础模块的路由配置
 // 收集所有的路由信息
-import { LOGIN_PATH } from '@/utils/Constants'
-import { constantRoute } from './routes'
+import { LOGIN_PATH, REGIST_PATH, ROUTER_VIEW_KEY } from '@/utils/Constants'
 import { get } from 'lodash'
 import {
   Router,
@@ -9,12 +8,65 @@ import {
   createRouter,
   createWebHistory
 } from 'vue-router'
+import Index from '@/views/Index/Index.vue'
 
 type RouteRecordRawExt = RouteRecordRaw & { children?: RouteRecordRawExt[] }
+type NullableRouter = Router | null
 let giAllRouters: RouteRecordRawExt[] = []
+let globalRouter: NullableRouter = null
 
-const initRouter: () => Router = () => {
-  let routers: RouteRecordRawExt[] = constantRoute
+export const initRouter: () => Router = () => {
+  let routers: RouteRecordRawExt[] = [
+    { path: '/', redirect: '/index' },
+    {
+      path: '/index',
+      name: 'index',
+      component: Index,
+      meta: {
+        title: lpk('page.index.Title'),
+        requireAuth: false,
+        hostRouterViewKey: ROUTER_VIEW_KEY.Index
+      },
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: () => import('@/views/Index/Home.vue'),
+          meta: {
+            requireAuth: false
+          }
+        },
+        {
+          path: '/my',
+          name: 'my',
+          component: () => import('@/views/My/My.vue'),
+          meta: {
+            title: lpk('page.my.Title'),
+            requireAuth: false,
+            keepAlive: false
+          }
+        }
+      ]
+    },
+    {
+      path: LOGIN_PATH,
+      name: 'login',
+      component: () => import('@/views/Login/Login.vue'),
+      meta: {
+        title: lpk('page.login.Title'),
+        requireAuth: false
+      }
+    },
+    {
+      path: REGIST_PATH,
+      name: 'regist',
+      component: () => import('@/views/Login/Regist.vue'),
+      meta: {
+        title: lpk('page.login.Regist'),
+        requireAuth: false
+      }
+    }
+  ]
   // 聚合业务模块的路由信息
   routers = routers.concat(app.getAllBModRoutes())
   // 把404的路由放到最后
@@ -69,6 +121,7 @@ const initRouter: () => Router = () => {
     const title = get(to, 'meta.title', '') as string
     title && (document.title = title)
   })
+  globalRouter = iRouter
   return iRouter
 }
 
@@ -96,6 +149,7 @@ const gatherBelongToRoute = () => {
   }
   giAllRouters.map((item) => _Do(item, giAllRouters))
 }
-
-const MyRouter = initRouter()
-export default MyRouter
+export const routerWrapper = {
+  getGlobalRouter: () => globalRouter as Router
+}
+export default routerWrapper

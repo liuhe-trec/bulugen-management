@@ -3,14 +3,47 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
 import useUserStore from '@/store/modules/user'
 import type { IUserLogin } from '@/api/UserApi'
-import $router from '@/router'
 import { ElNotification } from 'element-plus'
 let userStore = useUserStore()
 // 收集账号和密码信息
 let loginForm = reactive({ username: 'admin', password: '123456' })
+// 自定义校验规则
+const validatorUserName = (_rule: any, _value: any, callback: any) => {
+  // rule: 校验规则对象 value: 表单元素文本内容 callback: 规则放行函数决定是否通过
+  // if (/^\d{5,10}$/.test(value)) {
+  //   callback()
+  // } else {
+  //   callback(new Error('长度至少5位'))
+  // }
+  callback()
+}
+// 表单校验配置对象
+const loginRules = {
+  username: [
+    {
+      required: true,
+      min: 3,
+      max: 15,
+      message: 'Length should be 3 to 15',
+      trigger: 'change'
+    },
+    { trigger: 'change', validator: validatorUserName }
+  ],
+  password: [
+    {
+      required: true,
+      min: 6,
+      max: 15,
+      message: 'Length should be 6 to 15',
+      trigger: 'change'
+    }
+  ]
+}
 let loginLoading = ref(false)
-
+let loginFormValidate = ref()
 const loginAction = async () => {
+  // 表单校验
+  await loginFormValidate.value.validate()
   loginLoading.value = true
   const userLoginParam: IUserLogin = {
     username: loginForm.username,
@@ -19,7 +52,7 @@ const loginAction = async () => {
   try {
     await userStore.userLogin(userLoginParam)
     loginLoading.value = false
-    $router.push('/regist')
+    Tools.Router.pushToRgistPage()
     // 登录成功的提示信息
     ElNotification({
       title: `HI,${Tools.Time.getTimeMsg()}好!`,
@@ -38,16 +71,21 @@ const loginAction = async () => {
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form">
+        <el-form
+          class="login_form"
+          :model="loginForm"
+          :rules="loginRules"
+          ref="loginFormValidate"
+        >
           <h1>Hello,</h1>
           <h2>welecome to Bulugen management!</h2>
-          <el-form-item>
+          <el-form-item prop="username">
             <el-input
               :prefix-icon="User"
               v-model="loginForm.username"
             ></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               :prefix-icon="Lock"
               type="password"
