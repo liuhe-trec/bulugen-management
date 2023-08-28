@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from './Logo/Logo.vue'
+import Menu from './Menu/Menu.vue'
 </script>
 
 <template>
@@ -11,7 +12,9 @@ import Logo from './Logo/Logo.vue'
       <!-- 展示菜单 -->
       <el-scrollbar height="400px" class="scrollbar">
         <!-- 滚动组件 -->
-        
+        <el-menu background-color="#001529" text-color="white">
+          <Menu></Menu>
+        </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
