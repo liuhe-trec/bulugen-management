@@ -10,22 +10,33 @@ import {
 } from 'vue-router'
 import Index from '@/views/Index/Index.vue'
 
-type RouteRecordRawExt = RouteRecordRaw & { children?: RouteRecordRawExt[] }
+export type RouteRecordRawExt = RouteRecordRaw & {
+  children?: RouteRecordRawExt[]
+}
 type NullableRouter = Router | null
 let giAllRouters: RouteRecordRawExt[] = []
 let globalRouter: NullableRouter = null
 
 export const initRouter: () => Router = () => {
   let routers: RouteRecordRawExt[] = [
-    { path: '/', redirect: '/index' },
+    {
+      path: '/',
+      redirect: '/index',
+      meta: {
+        hidden: true,
+        icon: 'Key' //菜单左侧文字图标,目前使用element plus 的icon库
+      }
+    },
     {
       path: '/index',
       name: 'index',
       component: Index,
       meta: {
         title: lpk('page.index.Title'),
+        hidden: false, //是否在导航栏中隐藏
         requireAuth: false,
-        hostRouterViewKey: ROUTER_VIEW_KEY.Index
+        hostRouterViewKey: ROUTER_VIEW_KEY.Index,
+        icon: 'Key'
       },
       children: [
         {
@@ -33,7 +44,10 @@ export const initRouter: () => Router = () => {
           name: 'home',
           component: () => import('@/views/Index/Home.vue'),
           meta: {
-            requireAuth: false
+            title: lpk('page.index.Title'),
+            hidden: false,
+            requireAuth: false,
+            icon: 'Key'
           }
         },
         {
@@ -42,8 +56,10 @@ export const initRouter: () => Router = () => {
           component: () => import('@/views/My/My.vue'),
           meta: {
             title: lpk('page.my.Title'),
+            hidden: false,
             requireAuth: false,
-            keepAlive: false
+            keepAlive: false,
+            icon: 'Key'
           }
         }
       ]
@@ -54,7 +70,9 @@ export const initRouter: () => Router = () => {
       component: () => import('@/views/Login/Login.vue'),
       meta: {
         title: lpk('page.login.Title'),
-        requireAuth: false
+        hidden: false,
+        requireAuth: false,
+        icon: 'Key'
       }
     },
     {
@@ -63,6 +81,7 @@ export const initRouter: () => Router = () => {
       component: () => import('@/views/Login/Regist.vue'),
       meta: {
         title: lpk('page.login.Regist'),
+        hidden: true,
         requireAuth: false
       }
     }
@@ -73,6 +92,9 @@ export const initRouter: () => Router = () => {
   routers.push({
     path: '/:pathMatch(.*)*',
     name: 'notfound',
+    meta: {
+      hidden: true
+    },
     component: () => import('@/views/NotFound.vue')
   })
   // 收集所有"宿主路由" 对应的各个业务模块的"属于子路由"
@@ -150,6 +172,7 @@ const gatherBelongToRoute = () => {
   giAllRouters.map((item) => _Do(item, giAllRouters))
 }
 export const routerWrapper = {
-  getGlobalRouter: () => globalRouter as Router
+  getGlobalRouter: () => globalRouter as Router,
+  getAllRouters: () => giAllRouters
 }
 export default routerWrapper

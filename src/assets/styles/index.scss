@@ -1,5 +1,10 @@
 @import './global.scss';
 @import '../fonts/iconfont.css';
+// 导入一些全局样式,Element plus 自动引入会css丢失,所以单独引用下
+@import 'element-plus/dist/index.css';
+@import 'element-plus/theme-chalk/el-loading.css';
+@import 'element-plus/theme-chalk/el-message.css';
+@import 'element-plus/theme-chalk/el-notification.css';
 
 // 滚动条外观设置
 ::-webkit-scrollbar {

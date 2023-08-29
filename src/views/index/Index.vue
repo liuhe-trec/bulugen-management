@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import Logo from './Logo/Logo.vue'
-import Menu from './Menu/Menu.vue'
+import BLGMenu from './Menu/BLGMenu.vue'
+// 获取相关的小仓库
+import useUserStore from '@/store/modules/user'
+let userStore = useUserStore()
 </script>
 
 <template>
@@ -12,8 +15,8 @@ import Menu from './Menu/Menu.vue'
       <!-- 展示菜单 -->
       <el-scrollbar height="400px" class="scrollbar">
         <!-- 滚动组件 -->
-        <el-menu background-color="#001529" text-color="white">
-          <Menu></Menu>
+        <el-menu background-color="#545c64" text-color="#fff" active-text-color="#fff">
+          <BLGMenu :menuList="userStore.menuRoutes"></BLGMenu>
         </el-menu>
       </el-scrollbar>
     </div>
@@ -38,6 +41,9 @@ import Menu from './Menu/Menu.vue'
     .scrollbar {
       width: 100%;
       height: calc(100vh - $base-menu-logo-height - 20px);
+      .el-menu{
+        border-right: none;
+      }
     }
   }
   .layout-tabbar {

@@ -11,11 +11,6 @@ import './assets/styles/black-theme.scss'
 // 引入normalize.css 抹平各个浏览器的默认样式
 import 'normalize.css/normalize.css'
 import '@/assets/styles/index.scss'
-// 导入一些全局样式,Element plus 自动引入会css丢失,所以单独引用下
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/el-loading.css'
-import 'element-plus/theme-chalk/el-message.css'
-import 'element-plus/theme-chalk/el-notification.css'
 import { initRouter } from './router'
 // 初始化优化,因为初始化要异步调用,所以用自执行函数把他包起来
 ;(async () => {

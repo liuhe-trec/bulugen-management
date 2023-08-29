@@ -3,12 +3,14 @@ import { defineStore } from 'pinia'
 import type { IUser, IUserLogin } from '@/api/UserApi'
 import userApi from '@/api/UserApi'
 import type { UserState } from './types/type'
+import $routerWrapper from '@/router/index'
 // 创建仓库
 const useUserStore = defineStore('User', {
   // 存储数据
   state: (): UserState => {
     return {
-      token: ''
+      token: '',
+      menuRoutes: $routerWrapper.getAllRouters() // 存储生成菜单的数组
     }
   },
   // 异步|逻辑

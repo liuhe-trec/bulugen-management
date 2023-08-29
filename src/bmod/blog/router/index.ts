@@ -7,32 +7,27 @@ export const initRoutes = () => {
   // 定义当前模块的路由信息
   const iRoutes: RouteRecordRaw[] = [
     {
-      name: "blogIndex",
+      name: 'blogIndex',
       path: path,
       meta: {
-        title: lpk("Blob"),
+        title: lpk('Blob'),
+        hidden: true,
         requireAuth: false,
-        belongToRouterViewKey: ROUTER_VIEW_KEY.Index,
+        belongToRouterViewKey: ROUTER_VIEW_KEY.Index
       },
-      component: () => import("../views/Index/BolgIndex.vue"),
+      component: () => import('../views/Index/BolgIndex.vue')
     },
     {
-      name: "articleDetail",
+      name: 'articleDetail',
       path: `${path}/article/detail/:id`,
       meta: {
+        title: 'articledetail',
         requireAuth: false,
+        hidden: true
       },
-      component: () => import("../views/article/Detail/ArticleDetail.vue"),
-    },
-    {
-      name: "editArticle",
-      path: `${path}/edit`,
-      meta: {
-        title: lpk("page.blog.article.edit"),
-      },
-      component: () => import("../views/article/Edit/EditArticle.vue"),
-    },
-  ];
+      component: () => import('../views/article/Detail/ArticleDetail.vue')
+    }
+  ]
 
   app.registBModRoute(iRoutes);
 };

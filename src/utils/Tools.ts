@@ -1,5 +1,5 @@
 import cookies from 'js-cookie'
-import $router from '@/router/index'
+import $routerWrapper from '@/router/index'
 //防止请求被缓存的随机数
 const cachePreventRandom = Math.random()
 let cachePreventNum = 0
@@ -44,7 +44,7 @@ const iTools = {
   Router: {
     // 路由操作命名空间
     pushToRgistPage() {
-      $router.getGlobalRouter()!.push('/')
+      $routerWrapper.getGlobalRouter()!.push('/')
     }
   },
   Store: {

@@ -8,8 +8,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import autoprefixer from 'autoprefixer'
 import { resolve } from 'path'
-import IconsResolver from 'unplugin-icons/resolver'
-import Icons from 'unplugin-icons/vite'
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,22 +20,13 @@ export default defineConfig(() => {
         dts: 'src/types/auto-import.d.ts',
         resolvers: [
           ElementPlusResolver(),
-          IconsResolver({
-            prefix: 'Icon'
-          })
         ]
       }),
       Components({
         resolvers: [
           ElementPlusResolver(),
-          IconsResolver({
-            enabledCollections: ['ep']
-          })
         ],
         dts: 'src/types/auto-import-components.d.ts'
-      }),
-      Icons({
-        autoInstall: true
       }),
       viteMockServe({
         mockPath: 'src/mock',
