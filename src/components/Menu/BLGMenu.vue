@@ -1,13 +1,17 @@
 <script setup lang="ts">
 // 获取父组件传递过来的全部路由数组
 defineProps(['menuList'])
+// 点击菜单的回调
+const clickMenuAction = (vc: any) => {
+  console.log(vc.index)
+}
 </script>
 
 <template>
   <template v-for="item in menuList" :key="item.path">
     <!-- 无子路由 -->
     <template v-if="!item.children">
-      <el-menu-item v-if="!item.meta.hidden" :index="item.path">
+      <el-menu-item v-if="!item.meta.hidden" :index="item.path" @click="clickMenuAction">
         <template #title>
           <el-icon>
             <component :is="item.meta.icon"></component>
@@ -21,6 +25,7 @@ defineProps(['menuList'])
       <el-menu-item
         v-if="!item.children[0].meta.hidden"
         :index="item.children[0].path"
+        @click="clickMenuAction"
       >
         <template #title>
           <el-icon>

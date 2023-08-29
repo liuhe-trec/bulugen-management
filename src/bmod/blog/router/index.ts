@@ -13,7 +13,7 @@ export const initRoutes = () => {
         title: lpk('Blob'),
         hidden: true,
         requireAuth: false,
-        belongToRouterViewKey: ROUTER_VIEW_KEY.Index
+        // belongToRouterViewKey: ROUTER_VIEW_KEY.Index
       },
       component: () => import('../views/Index/BolgIndex.vue')
     },

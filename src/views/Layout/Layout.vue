@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Logo from './Logo/Logo.vue'
-import BLGMenu from './Menu/BLGMenu.vue'
+import Logo from '@/components/Logo/Logo.vue'
+import BLGMenu from '@/components/Menu/BLGMenu.vue'
 // 获取相关的小仓库
 import useUserStore from '@/store/modules/user'
 let userStore = useUserStore()

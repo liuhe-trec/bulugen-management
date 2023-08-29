@@ -8,7 +8,7 @@ import {
   createRouter,
   createWebHistory
 } from 'vue-router'
-import Index from '@/views/Index/Index.vue'
+import Layout from '@/views/Layout/Layout.vue'
 
 export type RouteRecordRawExt = RouteRecordRaw & {
   children?: RouteRecordRawExt[]
@@ -21,52 +21,33 @@ export const initRouter: () => Router = () => {
   let routers: RouteRecordRawExt[] = [
     {
       path: '/',
-      redirect: '/index',
-      meta: {
-        hidden: true,
-        icon: 'Key' //菜单左侧文字图标,目前使用element plus 的icon库
-      }
-    },
-    {
-      path: '/index',
-      name: 'index',
-      component: Index,
+      name: 'Layout',
+      redirect: '/home',
+      component: Layout,
       meta: {
         title: lpk('page.index.Title'),
         hidden: false, //是否在导航栏中隐藏
         requireAuth: false,
-        hostRouterViewKey: ROUTER_VIEW_KEY.Index,
-        icon: 'Key'
+        // hostRouterViewKey: ROUTER_VIEW_KEY.Index, // 子路由有哪些,模块拼接
+        icon: 'HomeFilled'
       },
       children: [
         {
-          path: '',
+          path: '/home',
           name: 'home',
-          component: () => import('@/views/Index/Home.vue'),
+          component: () => import('@/views/Home/Home.vue'),
           meta: {
-            title: lpk('page.index.Title'),
+            title: lpk('page.home.Title'),
             hidden: false,
             requireAuth: false,
-            icon: 'Key'
-          }
-        },
-        {
-          path: '/my',
-          name: 'my',
-          component: () => import('@/views/My/My.vue'),
-          meta: {
-            title: lpk('page.my.Title'),
-            hidden: false,
-            requireAuth: false,
-            keepAlive: false,
-            icon: 'Key'
+            icon: 'HomeFilled'
           }
         }
       ]
     },
     {
       path: LOGIN_PATH,
-      name: 'login',
+      name: 'Login',
       component: () => import('@/views/Login/Login.vue'),
       meta: {
         title: lpk('page.login.Title'),
@@ -77,12 +58,23 @@ export const initRouter: () => Router = () => {
     },
     {
       path: REGIST_PATH,
-      name: 'regist',
+      name: 'Regist',
       component: () => import('@/views/Login/Regist.vue'),
       meta: {
         title: lpk('page.login.Regist'),
-        hidden: true,
-        requireAuth: false
+        hidden: false,
+        requireAuth: false,
+        icon: 'Avatar'
+      }
+    },
+    {
+      path: '/screen',
+      component: () => import('@/views/Screen/BLGScreen.vue'),
+      name: 'Screen',
+      meta: {
+        title: lpk('page.screen.Index'),
+        hidden: false,
+        icon: 'Monitor'
       }
     }
   ]
