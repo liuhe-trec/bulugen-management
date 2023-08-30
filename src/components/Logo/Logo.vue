@@ -13,7 +13,7 @@
   height: $base-menu-logo-height;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 10px;
   img {
     width: 40px;
     height: 40px;
