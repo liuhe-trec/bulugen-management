@@ -8,8 +8,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BLGMenu: typeof import('./../components/Menu/BLGMenu.vue')['default']
+    Breadcrumb: typeof import('./../components/LayoutTabbar/Breadcrumb/Breadcrumb.vue')['default']
+    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
+    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -21,9 +27,11 @@ declare module 'vue' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     Icon: typeof import('./../components/Icon/src/Icon.vue')['default']
     KeepAliveRouterView: typeof import('./../components/KeepAliveRouterView/src/KeepAliveRouterView.vue')['default']
+    LayoutTabbar: typeof import('./../components/LayoutTabbar/LayoutTabbar.vue')['default']
     Logo: typeof import('./../components/Logo/Logo.vue')['default']
     MainContent: typeof import('./../components/MainContent/MainContent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TabbarSetting: typeof import('./../components/LayoutTabbar/Setting/TabbarSetting.vue')['default']
   }
 }

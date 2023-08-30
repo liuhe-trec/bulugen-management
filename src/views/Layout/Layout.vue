@@ -26,7 +26,10 @@ let userStore = useUserStore()
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout-tabbar">456</div>
+    <div class="layout-tabbar">
+      <!-- layout组件的顶部导航 -->
+      <LayoutTabbar></LayoutTabbar>
+    </div>
     <!-- 内容展示区域 -->
     <div class="layout-main">
       <MainContent></MainContent>
@@ -38,7 +41,6 @@ let userStore = useUserStore()
 .layout-container {
   width: 100%;
   height: 100vh;
-  background: green;
   .layout-slider {
     width: $base-menu-width;
     height: 100vh;
@@ -54,7 +56,6 @@ let userStore = useUserStore()
   .layout-tabbar {
     width: calc(100% - $base-menu-width);
     height: $base-tabbar-height;
-    background: chocolate;
     position: absolute;
     top: 0;
     left: $base-menu-width;
