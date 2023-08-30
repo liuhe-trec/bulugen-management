@@ -1,5 +1,6 @@
 import cookies from 'js-cookie'
 import $routerWrapper from '@/router/index'
+import { useRoute } from 'vue-router'
 //防止请求被缓存的随机数
 const cachePreventRandom = Math.random()
 let cachePreventNum = 0
@@ -48,6 +49,10 @@ const iTools = {
     },
     pushToRoute(vc: any) {
       $routerWrapper.getGlobalRouter().push(vc.index)
+    },
+    getCurrentPath() {
+      const $route = useRoute()
+      return $route.path
     }
   },
   Store: {

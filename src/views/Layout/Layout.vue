@@ -15,7 +15,12 @@ let userStore = useUserStore()
       <!-- 展示菜单 -->
       <el-scrollbar height="400px" class="scrollbar">
         <!-- 滚动组件 -->
-        <el-menu background-color="#545c64" text-color="#fff" active-text-color="#fff">
+        <el-menu
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#409EFF"
+          :default-active="Tools.Router.getCurrentPath()"
+        >
           <BLGMenu :menuList="userStore.menuRoutes"></BLGMenu>
         </el-menu>
       </el-scrollbar>
@@ -41,7 +46,7 @@ let userStore = useUserStore()
     .scrollbar {
       width: 100%;
       height: calc(100vh - $base-menu-logo-height - 20px);
-      .el-menu{
+      .el-menu {
         border-right: none;
       }
     }
