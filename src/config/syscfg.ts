@@ -9,13 +9,13 @@ export interface ISysCfg {
 }
 
 const iSysCfg: ISysCfg = {
-  baseUrl: "http://127.0.0.1:5173",
+  baseUrl: 'http://127.0.0.1:5173',
   bmodNames: [
     {
-      name: "blog",
-      enable: true,
-    },
-  ],
-};
+      name: 'product',
+      enable: true
+    }
+  ]
+}
 
 export default iSysCfg;

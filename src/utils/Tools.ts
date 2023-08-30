@@ -44,7 +44,10 @@ const iTools = {
   Router: {
     // 路由操作命名空间
     pushToRgistPage() {
-      $routerWrapper.getGlobalRouter()!.push('/')
+      $routerWrapper.getGlobalRouter().push('/')
+    },
+    pushToRoute(vc: any) {
+      $routerWrapper.getGlobalRouter().push(vc.index)
     }
   },
   Store: {

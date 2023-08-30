@@ -24,7 +24,7 @@ let userStore = useUserStore()
     <div class="layout-tabbar">456</div>
     <!-- 内容展示区域 -->
     <div class="layout-main">
-      <p style="height: 10000px; background: red">main context</p>
+      <MainContent></MainContent>
     </div>
   </div>
 </template>

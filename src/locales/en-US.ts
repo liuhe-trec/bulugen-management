@@ -6,5 +6,9 @@ export default {
   'page.my.Title': 'My',
   'page.login.Title': 'Login',
   'page.login.Regist': 'Regist',
-  'err.user.load': "loading user's data failed"
+  'err.user.load': "loading user's data failed",
+  'page.acl.index': 'permission control',
+  'page.acl.userControl': 'user control',
+  'page.acl.roleControl': 'role control',
+  'page.acl.menuControl': 'menu control',
 }

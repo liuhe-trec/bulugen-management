@@ -1,6 +1,6 @@
 // 基础模块的路由配置
 // 收集所有的路由信息
-import { LOGIN_PATH, REGIST_PATH, ROUTER_VIEW_KEY } from '@/utils/Constants'
+import { LOGIN_PATH, REGIST_PATH, } from '@/utils/Constants'
 import { get } from 'lodash'
 import {
   Router,
@@ -51,7 +51,7 @@ export const initRouter: () => Router = () => {
       component: () => import('@/views/Login/Login.vue'),
       meta: {
         title: lpk('page.login.Title'),
-        hidden: false,
+        hidden: true,
         requireAuth: false,
         icon: 'Key'
       }
@@ -62,7 +62,7 @@ export const initRouter: () => Router = () => {
       component: () => import('@/views/Login/Regist.vue'),
       meta: {
         title: lpk('page.login.Regist'),
-        hidden: false,
+        hidden: true,
         requireAuth: false,
         icon: 'Avatar'
       }
@@ -76,6 +76,51 @@ export const initRouter: () => Router = () => {
         hidden: false,
         icon: 'Monitor'
       }
+    },
+    {
+      path: '/acl',
+      component: () => import('@/views/Layout/Layout.vue'),
+      name: 'Acl',
+      meta: {
+        title: lpk('page.acl.index'),
+        hidden: false,
+        icon: 'Lock'
+      },
+      children: [
+        {
+          path: '/acl/user',
+          component: () =>
+            import('@/views/PermissionControl/UserControl/UserControl.vue'),
+          name: 'User',
+          meta: {
+            title: lpk('page.acl.userControl'),
+            hidden: false,
+            icon: 'User'
+          }
+        },
+        {
+          path: '/acl/role',
+          component: () =>
+            import('@/views/PermissionControl/RoleControl/RoleControl.vue'),
+          name: 'Role',
+          meta: {
+            title: lpk('page.acl.roleControl'),
+            hidden: false,
+            icon: 'UserFilled'
+          }
+        },
+        {
+          path: '/acl/menu',
+          component: () =>
+            import('@/views/PermissionControl/MenuControl/MenuControl.vue'),
+          name: 'Acl',
+          meta: {
+            title: lpk('page.acl.menuControl'),
+            hidden: false,
+            icon: 'Menu'
+          }
+        }
+      ]
     }
   ]
   // 聚合业务模块的路由信息
@@ -107,7 +152,9 @@ export const initRouter: () => Router = () => {
   // 路由守卫
   iRouter.beforeEach((to, _from, next) => {
     // 用lodash的get方法取id 可以避免出现getLoginUser是空的时候.id报错
-    const userId = get(app.getAppController().getLoginUser(), 'id', '')
+    // TODO Debug 为了调试把这个逻辑关了先
+    // const userId = get(app.getAppController().getLoginUser(), 'id', '')
+    const userId = 1
     if (
       !userId &&
       to.matched.some(
@@ -124,10 +171,11 @@ export const initRouter: () => Router = () => {
       return
     }
     // 已登录.进入登录界面的时候,直接返回到主页
-    if (userId && to.path == LOGIN_PATH) {
-      next('/')
-      return
-    }
+    // TODO 为了调试注释下面逻辑
+    // if (userId && to.path == LOGIN_PATH) {
+    //   next('/')
+    //   return
+    // }
     next()
   })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

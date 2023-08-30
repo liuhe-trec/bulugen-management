@@ -22,6 +22,7 @@ declare module 'vue' {
     Icon: typeof import('./../components/Icon/src/Icon.vue')['default']
     KeepAliveRouterView: typeof import('./../components/KeepAliveRouterView/src/KeepAliveRouterView.vue')['default']
     Logo: typeof import('./../components/Logo/Logo.vue')['default']
+    MainContent: typeof import('./../components/MainContent/MainContent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

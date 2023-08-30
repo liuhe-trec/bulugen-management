@@ -3,7 +3,7 @@
 defineProps(['menuList'])
 // 点击菜单的回调
 const clickMenuAction = (vc: any) => {
-  console.log(vc.index)
+  Tools.Router.pushToRoute(vc)
 }
 </script>
 

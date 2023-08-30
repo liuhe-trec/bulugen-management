@@ -6,5 +6,9 @@ export default {
   'page.my.Title': '我的',
   'page.login.Title': '登录',
   'page.login.Regist': '注册',
-  'err.user.load': '加载用户数据失败'
+  'err.user.load': '加载用户数据失败',
+  'page.acl.index': '权限管理',
+  'page.acl.userControl': '用户管理',
+  'page.acl.roleControl': '权限管理',
+  'page.acl.menuControl': '菜单管理',
 }
