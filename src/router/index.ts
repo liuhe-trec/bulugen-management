@@ -25,7 +25,7 @@ export const initRouter: () => Router = () => {
       redirect: '/home',
       component: Layout,
       meta: {
-        title: lpk('page.index.Title'),
+        title: '',
         hidden: false, //是否在导航栏中隐藏
         requireAuth: false,
         // hostRouterViewKey: ROUTER_VIEW_KEY.Index, // 子路由有哪些,模块拼接
@@ -79,6 +79,7 @@ export const initRouter: () => Router = () => {
     },
     {
       path: '/acl',
+      redirect: '/acl/user',
       component: () => import('@/views/Layout/Layout.vue'),
       name: 'Acl',
       meta: {

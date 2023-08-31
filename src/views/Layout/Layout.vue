@@ -19,7 +19,7 @@ const layoutSettingStore = useLayoutSettingStore()
       <!-- logo图标 -->
       <Logo />
       <!-- 展示菜单 -->
-      <el-scrollbar height="400px" class="scrollbar">
+      <el-scrollbar class="scrollbar">
         <!-- 滚动组件 -->
         <el-menu
           :collapse="layoutSettingStore.fold ? true : false"

@@ -44,6 +44,9 @@ const iTools = {
   },
   Router: {
     // 路由操作命名空间
+    getRoute() {
+      return useRoute()
+    },
     pushToRgistPage() {
       $routerWrapper.getGlobalRouter().push('/')
     },

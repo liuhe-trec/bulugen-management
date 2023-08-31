@@ -7,6 +7,7 @@ export const initRoutes = () => {
     {
       path: path,
       name: 'Product',
+      redirect: '/product/brand',
       component: () => import('@/views/Layout/Layout.vue'),
       meta: {
         title: lpk('page.product.index'),

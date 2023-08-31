@@ -16,16 +16,27 @@ const changeIcon = () => {
     </el-icon>
     <!-- 左侧面包屑 -->
     <el-breadcrumb separator-icon="ArrowRight">
-      <el-breadcrumb-item :to="{ path: '/' }">权限管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+      <el-breadcrumb-item
+        v-for="(item, index) in Tools.Router.getRoute().matched"
+        :key="index"
+        v-show="item.meta.title"
+        :to="item.path"
+      >
+        <!-- 图标 -->
+        <el-icon>
+          <component :is="item.meta.icon"></component>
+        </el-icon>
+        <!-- 标题 -->
+        <span style="margin: 0 2px;">{{ item.meta.title }}</span>
+      </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .tabbar-left {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-  }
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
 </style>

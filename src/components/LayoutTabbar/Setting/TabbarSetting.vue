@@ -1,10 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 获取仓库
+import useLayoutSettingStore from '@/store/modules/layoutSetting'
+const layoutSettingStroe = useLayoutSettingStore()
+const updateRefresh = () => {
+  layoutSettingStroe.refresh = !layoutSettingStroe.refresh
+}
+</script>
 
 <template>
   <div class="tabbar-right">
-    <el-button type="primary" size="small" icon="Refresh" circle></el-button>
-    <el-button type="primary" size="small" icon="FullScreen" circle></el-button>
-    <el-button type="primary" size="small" icon="Setting" circle></el-button>
+    <el-button size="small" icon="Refresh" circle @click="updateRefresh"></el-button>
+    <el-button size="small" icon="FullScreen" circle></el-button>
+    <el-button size="small" icon="Setting" circle></el-button>
     <img
       src="../../../../public/logo.png"
       style="width: 24px; height: 24px; margin: 0 10px"
