@@ -10,7 +10,8 @@ const useUserStore = defineStore('User', {
   state: (): UserState => {
     return {
       token: '',
-      menuRoutes: $routerWrapper.getAllRouters() // 存储生成菜单的数组
+      menuRoutes: $routerWrapper.getAllRouters(), // 存储生成菜单的数组
+      username: '',
     }
   },
   // 异步|逻辑
@@ -21,6 +22,12 @@ const useUserStore = defineStore('User', {
       const result: IUser = await userApi.userLoginRequest()
       console.log(result)
       return 'ok'
+    },
+    // 获取用户信息
+    async userInfo() {
+      const result = await userApi.getSelfInfo()
+      this.username = result.name
+      console.log(this.username)
     }
   },
   // 计算

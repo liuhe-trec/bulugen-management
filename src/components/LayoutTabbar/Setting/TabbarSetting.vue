@@ -1,7 +1,9 @@
 <script setup lang="ts">
 // 获取仓库
 import useLayoutSettingStore from '@/store/modules/layoutSetting'
+import useUserStore from '@/store/modules/user'
 const layoutSettingStroe = useLayoutSettingStore()
+const userStroe = useUserStore()
 const updateRefresh = () => {
   layoutSettingStroe.refresh = !layoutSettingStroe.refresh
 }
@@ -27,7 +29,7 @@ const fullScreen = () => {
     />
     <el-dropdown>
       <span class="el-dropdown-link">
-        Admin
+        {{ userStroe.username }}
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
