@@ -5,12 +5,21 @@ const layoutSettingStroe = useLayoutSettingStore()
 const updateRefresh = () => {
   layoutSettingStroe.refresh = !layoutSettingStroe.refresh
 }
+const fullScreen = () => {
+  // DOM对象的属性判断是不是全屏
+  let isFull = document.fullscreenElement
+  if (!isFull) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
 </script>
 
 <template>
   <div class="tabbar-right">
     <el-button size="small" icon="Refresh" circle @click="updateRefresh"></el-button>
-    <el-button size="small" icon="FullScreen" circle></el-button>
+    <el-button size="small" icon="FullScreen" circle @click="fullScreen"></el-button>
     <el-button size="small" icon="Setting" circle></el-button>
     <img
       src="../../../../public/logo.png"
