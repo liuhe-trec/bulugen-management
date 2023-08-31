@@ -1,6 +1,7 @@
 import cookies from 'js-cookie'
 import $routerWrapper from '@/router/index'
 import { useRoute } from 'vue-router'
+import { LOGIN_PATH } from './Constants'
 //防止请求被缓存的随机数
 const cachePreventRandom = Math.random()
 let cachePreventNum = 0
@@ -49,6 +50,11 @@ const iTools = {
     },
     pushToRgistPage() {
       $routerWrapper.getGlobalRouter().push('/')
+    },
+    pushToLoginPage(redirectPath: string = '') {
+      $routerWrapper
+        .getGlobalRouter()
+        .push({ path: LOGIN_PATH, query: { redirect: redirectPath } })
     },
     pushToRoute(vc: any) {
       $routerWrapper.getGlobalRouter().push(vc.index)

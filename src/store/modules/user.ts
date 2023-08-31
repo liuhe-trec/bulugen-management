@@ -11,7 +11,7 @@ const useUserStore = defineStore('User', {
     return {
       token: '',
       menuRoutes: $routerWrapper.getAllRouters(), // 存储生成菜单的数组
-      username: '',
+      username: ''
     }
   },
   // 异步|逻辑
@@ -28,6 +28,13 @@ const useUserStore = defineStore('User', {
       const result = await userApi.getSelfInfo()
       this.username = result.name
       console.log(this.username)
+    },
+    // 退出登录
+    userLogout() {
+      // TODO: 1.向服务器发出退出登录请求
+      // 2.仓库中关于用户的数据要清空
+      this.username = ''
+      this.token = ''
     }
   },
   // 计算

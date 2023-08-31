@@ -2,6 +2,9 @@
 // 获取仓库
 import useLayoutSettingStore from '@/store/modules/layoutSetting'
 import useUserStore from '@/store/modules/user'
+import { useRoute } from 'vue-router';
+const $route = useRoute()
+
 const layoutSettingStroe = useLayoutSettingStore()
 const userStroe = useUserStore()
 const updateRefresh = () => {
@@ -15,6 +18,12 @@ const fullScreen = () => {
   } else {
     document.exitFullscreen()
   }
+}
+// 退出登录点击回调
+const logout = () => {
+  userStroe.userLogout()
+  // 3.跳转到登录页面
+  Tools.Router.pushToLoginPage($route.path)
 }
 </script>
 
@@ -36,7 +45,7 @@ const fullScreen = () => {
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>退出登录</el-dropdown-item>
+          <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>

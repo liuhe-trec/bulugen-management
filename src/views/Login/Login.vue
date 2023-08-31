@@ -4,6 +4,9 @@ import { reactive } from 'vue'
 import useUserStore from '@/store/modules/user'
 import type { IUserLogin } from '@/api/UserApi'
 import { ElNotification } from 'element-plus'
+import { useRoute, useRouter } from 'vue-router'
+const $route = useRoute()
+const $router = useRouter()
 let userStore = useUserStore()
 // 收集账号和密码信息
 let loginForm = reactive({ username: 'admin', password: '123456' })
@@ -52,7 +55,9 @@ const loginAction = async () => {
   try {
     await userStore.userLogin(userLoginParam)
     loginLoading.value = false
-    Tools.Router.pushToRgistPage()
+    // 判断 路由中是否有query参数，有的就跳query
+    const redirect: any = $route.query.redirect
+    $router.push({ path: redirect || '/'})
     // 登录成功的提示信息
     ElNotification({
       title: `HI,${Tools.Time.getTimeMsg()}好!`,
