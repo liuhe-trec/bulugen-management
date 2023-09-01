@@ -9,6 +9,8 @@ import {
   createWebHistory
 } from 'vue-router'
 import Layout from '@/views/Layout/Layout.vue'
+import nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export type RouteRecordRawExt = RouteRecordRaw & {
   children?: RouteRecordRawExt[]
@@ -152,6 +154,7 @@ export const initRouter: () => Router = () => {
   })
   // 路由守卫
   iRouter.beforeEach((to, _from, next) => {
+    nprogress.start()
     // 用lodash的get方法取id 可以避免出现getLoginUser是空的时候.id报错
     // TODO Debug 为了调试把这个逻辑关了先
     // const userId = get(app.getAppController().getLoginUser(), 'id', '')
@@ -183,6 +186,7 @@ export const initRouter: () => Router = () => {
   iRouter.afterEach((to, _from) => {
     const title = get(to, 'meta.title', '') as string
     title && (document.title = title)
+    nprogress.done()
   })
   globalRouter = iRouter
   return iRouter
