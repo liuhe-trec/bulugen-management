@@ -1,6 +1,6 @@
 // 基础模块的路由配置
 // 收集所有的路由信息
-import { LOGIN_PATH, REGIST_PATH, } from '@/utils/Constants'
+import { LOGIN_PATH, REGIST_PATH } from '@/utils/Constants'
 import { get } from 'lodash'
 import {
   Router,
@@ -11,6 +11,8 @@ import {
 import Layout from '@/views/Layout/Layout.vue'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+// 取消右上角加载的动画
+nprogress.configure({ showSpinner: false })
 
 export type RouteRecordRawExt = RouteRecordRaw & {
   children?: RouteRecordRawExt[]

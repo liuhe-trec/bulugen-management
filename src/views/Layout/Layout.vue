@@ -12,10 +12,7 @@ const layoutSettingStore = useLayoutSettingStore()
 <template>
   <div class="layout-container">
     <!-- 左侧菜单 -->
-    <div
-      class="layout-slider"
-      :class="{ fold: layoutSettingStore.fold ? true : false }"
-    >
+    <div class="layout-slider">
       <!-- logo图标 -->
       <Logo />
       <!-- 展示菜单 -->
@@ -65,9 +62,6 @@ const layoutSettingStore = useLayoutSettingStore()
       .el-menu {
         border-right: none;
       }
-    }
-    &.fold {
-      width: $base-menu-min-width;
     }
   }
   .layout-tabbar {
