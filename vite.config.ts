@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { viteMockServe } from 'vite-plugin-mock'
 
@@ -7,11 +7,13 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import autoprefixer from 'autoprefixer'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default defineConfig(() => {
+export default defineConfig(({command, mode}) => {
+  // 获取各种环境下的对应变量,加载哪个环境下的配置文件
+  let env = loadEnv(mode, process.cwd())
   return {
     plugins: [
       vue(),
@@ -92,7 +94,14 @@ export default defineConfig(() => {
       }
     },
     server: {
-      port: 5173
+      port: 5173,
+      proxy: {
+        [env.VITE_APP_BASE_API]: {
+          target: env.VITE_SERVE,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/,'')
+        }
+      }
     }
   }
 })

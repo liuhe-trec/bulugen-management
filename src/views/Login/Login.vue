@@ -9,7 +9,7 @@ const $route = useRoute()
 const $router = useRouter()
 let userStore = useUserStore()
 // 收集账号和密码信息
-let loginForm = reactive({ username: 'admin', password: '123456' })
+let loginForm = reactive({ username: 'admin', password: 'atguigu123' })
 // 自定义校验规则
 const validatorUserName = (_rule: any, _value: any, callback: any) => {
   // rule: 校验规则对象 value: 表单元素文本内容 callback: 规则放行函数决定是否通过
