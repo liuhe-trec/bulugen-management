@@ -11,4 +11,5 @@ export default {
   'page.acl.userControl': '用户管理',
   'page.acl.roleControl': '权限管理',
   'page.acl.menuControl': '菜单管理',
+  'error.title.login':'登录失败',
 }

@@ -11,4 +11,5 @@ export default {
   'page.acl.userControl': 'user control',
   'page.acl.roleControl': 'role control',
   'page.acl.menuControl': 'menu control',
+  'error.title.login': 'login faile'
 }

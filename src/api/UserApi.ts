@@ -5,6 +5,7 @@ import { APIMethods } from '@/utils/Constants'
 export interface IUser {
   id: number
   name: string
+  token: string
 }
 
 export interface IUserLogin {
@@ -31,7 +32,8 @@ const initBaseAPIParams: BaseAPIType.IInitParams = {
   mapper(item: GlobalType.IRecord): IUser {
     return {
       id: get(item, 'id'),
-      name: get(item, 'name')
+      name: get(item, 'name'),
+      token: get(item, 'token')
     }
   }
 }
@@ -39,21 +41,27 @@ const initBaseAPIParams: BaseAPIType.IInitParams = {
 export default {
   ...baseApi.initApi<
     IUser,
-    Pick<BaseAPIType.IAllowMethods<IUser>, APIMethods.GET | APIMethods.LIST>
+    Pick<BaseAPIType.IAllowMethods<IUser>, APIMethods.GET | APIMethods.DELETE>
   >(initBaseAPIParams),
   getSelfInfo(): Promise<IUser> {
     return Promise.resolve({
       // 校验跳转到登录画面
       id: 1,
-      name: 'zs'
+      name: 'zs',
+      token: ''
     })
   },
-  userLoginRequest(): Promise<IUser> {
-    setTimeout
-    return Promise.resolve({
-      // 校验跳转到登录画面
-      id: 1,
-      name: 'zs'
+  userLoginRequest(loginInfo: IUserLogin): Promise<IUser> {
+    return Ajax.get<IUser>({
+      url: '/dev-api/v1/public/user/login',
+      params: loginInfo
     })
+      .then((res) => {
+        return res.data
+      })
+      .catch((e) => {
+        Tools.processApiError('error.title.login', e)
+        return {} as IUser
+      })
   }
 }

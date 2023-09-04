@@ -66,7 +66,6 @@ const loginAction = async () => {
     })
   } catch (error) {
     loginLoading.value = false
-    console.log(error)
   }
 }
 </script>

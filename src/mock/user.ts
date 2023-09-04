@@ -1,14 +1,22 @@
 import { MockMethod } from 'vite-plugin-mock'
 export default [
   {
-    url: '/api/get',
+    url: '/v1/public/user/login',
     method: 'get',
-    response: () => {
-      return {
-        code: 0,
-        data: {
-          name: 'vben'
+    response: ({ query }) => {
+      if (query.username == 'admin') {
+        return {
+          code: 200,
+          data: {
+            id: '123456789',
+            name: 'admin',
+            token: 'hellothisistoken'
+          }
         }
+      }
+      return {
+        code: 403,
+        msg: '密码错误'
       }
     }
   },

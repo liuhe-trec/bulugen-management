@@ -23,7 +23,12 @@ const iTools = {
     return url
   },
   showError(title: string = '', msg: string = '') {
-    alert(`${title}: ${msg}`)
+    // alert(`${title}: ${msg}`)
+    ElNotification({
+      title: title,
+      type: 'error',
+      message: msg
+    })
   },
   processApiError(
     title: string,
@@ -37,7 +42,7 @@ const iTools = {
     title = lpk(title)
     const content = lpk(res.msg) || ''
     if (false !== options.isShowInfo) {
-      Tools.showError(title, content)
+      Tools.showError(title,content)
     }
     window.console && window.console.log && console.log(res)
     const errorInfo = `${title}:${content}`
