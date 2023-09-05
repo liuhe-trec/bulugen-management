@@ -1,6 +1,6 @@
 // 基础模块的路由配置
 // 收集所有的路由信息
-import { LOGIN_PATH, REGIST_PATH } from '@/utils/Constants'
+import { LOGIN_PATH, LOGIN_TOKEN, REGIST_PATH } from '@/utils/Constants'
 import { get } from 'lodash'
 import {
   Router,
@@ -43,7 +43,7 @@ export const initRouter: () => Router = () => {
           meta: {
             title: lpk('page.home.Title'),
             hidden: false,
-            requireAuth: false,
+            requireAuth: true,
             icon: 'HomeFilled'
           }
         }
@@ -160,9 +160,10 @@ export const initRouter: () => Router = () => {
     // 用lodash的get方法取id 可以避免出现getLoginUser是空的时候.id报错
     // TODO Debug 为了调试把这个逻辑关了先
     // const userId = get(app.getAppController().getLoginUser(), 'id', '')
-    const userId = 1
+    const tokenStr = Tools.LocalStorage.getItem(LOGIN_TOKEN)
+
     if (
-      !userId &&
+      !tokenStr &&
       to.matched.some(
         (record) => false !== get(record, 'meta.requireAuth', true)
       )

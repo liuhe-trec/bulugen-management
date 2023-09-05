@@ -7,13 +7,13 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import autoprefixer from 'autoprefixer'
-import path, { resolve } from 'path'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default defineConfig(({command, mode}) => {
   // 获取各种环境下的对应变量,加载哪个环境下的配置文件
-  let env = loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd())
   return {
     plugins: [
       vue(),
@@ -96,7 +96,7 @@ export default defineConfig(({command, mode}) => {
     server: {
       port: 5173,
       proxy: {
-        [env.VITE_APP_BASE_API]: {
+        [env.VITE_APP_BASE_API]: { // /dev-api
           target: env.VITE_SERVE,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/dev-api/,'')
