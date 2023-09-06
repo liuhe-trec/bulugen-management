@@ -12,7 +12,6 @@ export const initRoutes = () => {
       meta: {
         title: lpk('page.product.index'),
         hidden: false,
-        requireAuth: false,
         icon: 'Goods'
       },
       children: [
@@ -24,7 +23,7 @@ export const initRoutes = () => {
           meta: {
             title: lpk('page.product.brand.index'),
             hidden: false,
-            requireAuth: false,
+            requireAuth: true,
             icon: 'GoodsFilled'
           }
         },
@@ -36,7 +35,7 @@ export const initRoutes = () => {
           meta: {
             title: lpk('page.product.attribute.index'),
             hidden: false,
-            requireAuth: false,
+            requireAuth: true,
             icon: 'Files'
           }
         },
@@ -47,7 +46,7 @@ export const initRoutes = () => {
           meta: {
             title: lpk('page.product.SPU.index'),
             hidden: false,
-            requireAuth: false,
+            requireAuth: true,
             icon: 'Basketball'
           }
         },
@@ -58,7 +57,7 @@ export const initRoutes = () => {
           meta: {
             title: lpk('page.product.SKU.index'),
             hidden: false,
-            requireAuth: false,
+            requireAuth: true,
             icon: 'Baseball'
           }
         }

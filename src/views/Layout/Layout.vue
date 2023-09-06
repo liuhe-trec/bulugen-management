@@ -79,7 +79,7 @@ const layoutSettingStore = useLayoutSettingStore()
   .layout-main {
     width: calc(100vw - $base-menu-width - 40px);
     height: calc(100vh - $base-tabbar-height - 40px);
-    background: purple;
+    background: white;
     position: absolute;
     left: $base-menu-width;
     top: $base-tabbar-height;

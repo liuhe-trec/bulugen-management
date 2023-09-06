@@ -100,6 +100,7 @@ export const initRouter: () => Router = () => {
           meta: {
             title: lpk('page.acl.userControl'),
             hidden: false,
+            requireAuth: true,
             icon: 'User'
           }
         },
@@ -111,6 +112,7 @@ export const initRouter: () => Router = () => {
           meta: {
             title: lpk('page.acl.roleControl'),
             hidden: false,
+            requireAuth: true,
             icon: 'UserFilled'
           }
         },
@@ -122,6 +124,7 @@ export const initRouter: () => Router = () => {
           meta: {
             title: lpk('page.acl.menuControl'),
             hidden: false,
+            requireAuth: true,
             icon: 'Menu'
           }
         }
