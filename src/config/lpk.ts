@@ -21,6 +21,7 @@ const initUIFrameWorkLpk = () => {
   // };
   // const locale = getLocale();
   // vantLpk[locale] && Locale.use(locale, vantLpk[locale]);
+  // 使用的element plus 在app.vue中进行了初始化
 };
 
 export const getLocale: () => string = () => {
