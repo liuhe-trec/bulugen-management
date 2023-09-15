@@ -1,6 +1,8 @@
 import { get } from 'lodash'
 import baseApi from './BaseApi'
 import { APIMethods } from '@/utils/Constants'
+import { IResponse } from '@/utils/Request'
+import { ajaxUpload } from 'element-plus/es/components/upload/src/ajax'
 
 export interface IUser {
   id: number
@@ -51,17 +53,25 @@ export default {
       token: ''
     })
   },
-  userLoginRequest(loginInfo: IUserLogin): Promise<IUser> {
-    return Ajax.get<IUser>({
-      url: '/dev-api/v1/public/user/login',
+  async userLoginRequest(loginInfo: IUserLogin): Promise<IResponse> {
+    // try {
+    //   const res = await Ajax.post<IResponse<string>>({
+    //     url: '/dev-api/admin/acl/index/login',
+    //     params: loginInfo
+    //   })
+    //   return res.data
+    // } catch (e: any) {
+    //   Tools.processApiError('error.title.login', e)
+    //   return {} as IResponse
+    // }
+    return Ajax.post<IResponse<string>>({
+      url: '/dev-api/admin/acl/index/login',
       params: loginInfo
-    })
-      .then((res) => {
-        return res.data
-      })
-      .catch((e) => {
-        Tools.processApiError('error.title.login', e)
-        return {} as IUser
-      })
+    }).then((res) => {
+      return res
+    }).catch((e) => {
+      Tools.processApiError('error.title.login', e)
+      return {} as IResponse
+    }) 
   }
 }

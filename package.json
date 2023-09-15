@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "ISC",
   "scripts": {
-    "dev": "vite --open --host",
+    "dev": "vite --open --host --mode test",
     "build:prod": "vue-tsc && vite build --mode production",
     "build:test": "vue-tsc && vite build --mode test",
     "preview": "vite preview",

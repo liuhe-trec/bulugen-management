@@ -20,6 +20,7 @@ export interface IResponse<T = any> {
   code: number
   data: T
   msg: string
+  ok: boolean
 }
 // 设置axios默认配置选项
 axios.defaults.headers.head['Content-Type'] = 'application/json;chartset=utf-8'

@@ -5,6 +5,7 @@ import userApi from '@/api/UserApi'
 import type { UserState } from './types/type'
 import $routerWrapper from '@/router/index'
 import { LOGIN_TOKEN } from '@/utils/Constants'
+import { IResponse } from '@/utils/Request'
 // 创建仓库
 const useUserStore = defineStore('User', {
   // 存储数据
@@ -19,9 +20,9 @@ const useUserStore = defineStore('User', {
   actions: {
     // 用户登录方法
     async userLogin(param: IUserLogin) {
-      const userResult: IUser = await userApi.userLoginRequest(param)
-      Tools.LocalStorage.setItem(LOGIN_TOKEN, userResult.token)
-      this.token = userResult.token
+      const userResult: IResponse<string> = await userApi.userLoginRequest(param)
+      Tools.LocalStorage.setItem(LOGIN_TOKEN, userResult.data)
+      this.token = userResult.data
     },
     // 获取用户信息
     async userInfo() {
