@@ -2,7 +2,6 @@ import { get } from 'lodash'
 import baseApi from './BaseApi'
 import { APIMethods } from '@/utils/Constants'
 import { IResponse } from '@/utils/Request'
-import { ajaxUpload } from 'element-plus/es/components/upload/src/ajax'
 
 export interface IUser {
   id: number
@@ -54,6 +53,7 @@ export default {
     })
   },
   async userLoginRequest(loginInfo: IUserLogin): Promise<IResponse> {
+    // 方式一.可以用try catch
     // try {
     //   const res = await Ajax.post<IResponse<string>>({
     //     url: '/dev-api/admin/acl/index/login',
@@ -64,6 +64,7 @@ export default {
     //   Tools.processApiError('error.title.login', e)
     //   return {} as IResponse
     // }
+    // 方式二,也可以用以下方式
     return Ajax.post<IResponse<string>>({
       url: '/dev-api/admin/acl/index/login',
       params: loginInfo
