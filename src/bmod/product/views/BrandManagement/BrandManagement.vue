@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import TrademarkApi, { Records } from '@/api/product/trademark/TrademarkApi'
+import TrademarkApi, {
+  Records,
+  TradeMark
+} from '@/bmod/product/api/product/trademark/TrademarkApi'
+import { ElMessage, UploadProps } from 'element-plus'
 // 组合式API函数ref
 // 当前页码
 let pageNo = ref<number>(1)
@@ -11,6 +15,11 @@ let total = ref<number>(0)
 let trademarkArr = ref<Records>([])
 // 控制对话框的显示与隐藏
 let dialogFormVisible = ref<boolean>(false)
+// 收集新增品牌数据
+let trademarkParams = reactive<TradeMark>({
+  tmName: '',
+  logoUrl: ''
+})
 // 添加品牌按钮触发
 const addTrademark = () => {
   dialogFormVisible.value = true
@@ -25,6 +34,7 @@ const cancel = () => {
 }
 const confirm = () => {
   dialogFormVisible.value = false
+  reqadd
 }
 
 const getHasTrademark = async (pager = 1) => {
@@ -38,6 +48,39 @@ const getHasTrademark = async (pager = 1) => {
 // 当下拉菜单的值被改变的时候
 const sizeChange = () => {
   getHasTrademark()
+}
+
+// 上传图片->上传图片之前触发的钩子函数
+const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
+  // 上传文件之前可以约束文件类型与大小
+  // 格式png|jpg|gif 4M
+  if (
+    rawFile.type == 'image/png' ||
+    rawFile.type == 'image/jpeg' ||
+    rawFile.type == 'image/gif'
+  ) {
+    if (rawFile.size < 4 * 1024 * 1024) {
+      return true
+    } else {
+      ElMessage({
+        type: 'error',
+        message: '上传文件格式务必PNG|JPG|GIF'
+      })
+      return false
+    }
+  } else {
+    ElMessage({
+      type: 'error',
+      message: '上传文件格式务必PNG|JPG|GIF'
+    })
+    return false
+  }
+}
+// 上传图片->上传图片成功的函数
+const handleAvatarSuccess: UploadProps['onSuccess'] = (
+  response) => {
+  // response是接口返回的数据,uploadFile也是接口返回的数据,包括大小之类的
+  trademarkParams.logoUrl = response.data
 }
 // 组件生命周期方法
 onMounted(() => {
@@ -110,17 +153,24 @@ onMounted(() => {
     <el-dialog v-model="dialogFormVisible" title="添加品牌">
       <el-form style="width: 80%">
         <el-form-item label="品牌名称" label-width="84px">
-          <el-input placeholder="请输入品牌名称"></el-input>
+          <el-input
+            placeholder="请输入品牌名称"
+            v-model="trademarkParams.tmName"
+          ></el-input>
         </el-form-item>
         <el-form-item label="品牌LOGO" label-width="84px">
+          <!-- 
+            upload组件相应的属性
+            action: 上传图片的请求地址
+          -->
           <el-upload
             class="avatar-uploader"
-            action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+            action="/dev-api/admin/product/fileUpload"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
           >
-            <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+            <img v-if="trademarkParams.logoUrl" :src="trademarkParams.logoUrl" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </el-form-item>
