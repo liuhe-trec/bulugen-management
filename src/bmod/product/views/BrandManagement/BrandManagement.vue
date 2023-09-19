@@ -34,7 +34,6 @@ const cancel = () => {
 }
 const confirm = () => {
   dialogFormVisible.value = false
-  reqadd
 }
 
 const getHasTrademark = async (pager = 1) => {
