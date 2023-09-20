@@ -1,6 +1,6 @@
 //创建用户相关的小仓库
 import { defineStore } from 'pinia'
-import type { IUser, IUserLogin } from '@/api/UserApi'
+import type { IUserLogin } from '@/api/UserApi'
 import userApi from '@/api/UserApi'
 import type { UserState } from './types/type'
 import $routerWrapper from '@/router/index'
@@ -28,7 +28,7 @@ const useUserStore = defineStore('User', {
     async userInfo() {
       const result = await userApi.getSelfInfo()
       this.username = result.name
-      console.log(this.username)
+      // console.log(this.username)
     },
     // 退出登录
     userLogout() {

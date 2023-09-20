@@ -1,45 +1,49 @@
-import { APIMethods } from "@/utils/Constants";
-import { IResponse } from "@/utils/Request";
-import { get } from "lodash";
+import { APIMethods } from '@/utils/Constants'
+import { IResponse } from '@/utils/Request'
+import { get } from 'lodash'
 
 type IFnUrlAndParamsTransfer = (
   type: string,
   uriItem: BaseAPIType.IURIItem,
-  params: GlobalType.IRecord,
+  params: GlobalType.IRecord
 ) => {
-  url: string;
-  params: GlobalType.IRecord;
-};
+  url: string
+  params: GlobalType.IRecord
+}
 const transferUrlAndParams: IFnUrlAndParamsTransfer = (
   type,
   uriItem,
-  params = {},
+  params = {}
 ) => {
-  let url = uriItem.path;
-  if ("get" === type || "delete" === type) {
-    const idName = "id";
-    url = url.replace(`:${idName}`, get(params, idName));
+  let url = uriItem.path
+  if ('get' === type || 'delete' === type) {
+    const idName = 'id'
+    const pageName = 'page'
+    const limitName = 'limit'
+    url = url.replace(`:${idName}`, get(params, idName))
+    url = url.replace(`:${pageName}`, get(params, pageName))
+    url = url.replace(`:${limitName}`, get(params, limitName))
   }
-  uriItem.fnUrlTransfer && (url = uriItem.fnUrlTransfer(url, params));
-  uriItem.fnParamsTransfer && (params = uriItem.fnParamsTransfer(url, params));
+  uriItem.fnUrlTransfer && (url = uriItem.fnUrlTransfer(url, params))
+  uriItem.fnParamsTransfer && (params = uriItem.fnParamsTransfer(url, params))
   return {
     url,
-    params,
-  };
-};
+    params
+  }
+}
 
 export default {
   initApi<T = any, R = BaseAPIType.IAllowMethods<T>>(
-    initParams: BaseAPIType.IInitParams<T>,
+    initParams: BaseAPIType.IInitParams<T>
   ): R {
-    const allMethods: BaseAPIType.IAllowMethods<T> = {} as any;
-    [
+    const allMethods: BaseAPIType.IAllowMethods<T> = {} as any
+    ;[
       APIMethods.GET,
       APIMethods.LIST,
       APIMethods.POST,
       APIMethods.PUT,
       APIMethods.PATCH,
-      APIMethods.DELETE,
+      APIMethods.DELETE
     ].map((method) => {
       switch (method) {
         case APIMethods.GET:
@@ -47,86 +51,86 @@ export default {
             allMethods[method] = (params: GlobalType.IRecord): Promise<T> => {
               return Ajax.get<T>({
                 ...transferUrlAndParams(
-                  "get",
-                  get(initParams, "uri.get"),
-                  params,
-                ),
+                  'get',
+                  get(initParams, 'uri.get'),
+                  params
+                )
               })
                 .then((res) => {
                   return initParams.mapper
                     ? initParams.mapper(res.data)
-                    : (res.data as T);
+                    : (res.data as T)
                 })
                 .catch((e) => {
-                  Tools.processApiError(get(initParams, "uri.get.errMsg"), e);
-                  return {} as T;
-                });
-            };
+                  Tools.processApiError(get(initParams, 'uri.get.errMsg'), e)
+                  return {} as T
+                })
+            }
           }
-          break;
+          break
         case APIMethods.LIST:
           {
             allMethods[method] = (
-              params: GlobalType.IRecord,
+              params: GlobalType.IRecord
             ): Promise<BaseAPIType.IListResult<T>> => {
               const iResult: BaseAPIType.IListResult<T> = {
                 total: 0,
-                items: [],
-              };
+                items: []
+              }
               return Ajax.get<T>({
                 ...transferUrlAndParams(
                   method,
                   get(initParams, `uri.${method}`),
-                  params,
-                ),
+                  params
+                )
               })
                 .then((res) => {
                   const { total, items = [] } =
-                    res.data as unknown as BaseAPIType.IListResult<T>;
-                  iResult.total = total;
+                    res.data as unknown as BaseAPIType.IListResult<T>
+                  iResult.total = total
                   iResult.items = initParams.mapper
                     ? items.map((item) => {
-                        return initParams.mapper!(item);
+                        return initParams.mapper!(item)
                       })
-                    : items;
-                  return iResult;
+                    : items
+                  return iResult
                 })
                 .catch((e) => {
                   Tools.processApiError(
                     get(initParams, `uri.${method}.errMsg`),
-                    e,
-                  );
-                  return iResult;
-                });
-            };
+                    e
+                  )
+                  return iResult
+                })
+            }
           }
-          break;
+          break
         case APIMethods.POST:
         case APIMethods.PUT:
         case APIMethods.PATCH:
         case APIMethods.DELETE:
           {
             allMethods[method] = (
-              params: GlobalType.IRecord,
+              params: GlobalType.IRecord
             ): Promise<IResponse> => {
               return Ajax[method]<T>({
                 ...transferUrlAndParams(
                   method,
                   get(initParams, `uri.${method}`),
-                  params,
-                ),
+                  params
+                )
               }).catch((e) => {
                 Tools.processApiError(
                   get(initParams, `uri.${method}.errMsg`),
-                  e,
-                );
-                return {} as IResponse;
-              });
-            };
+                  e
+                )
+                return {} as IResponse
+              })
+            }
           }
-          break;
+          break
       }
-    });
-    return allMethods as unknown as R;
-  },
-};
+    })
+    return allMethods as unknown as R
+  }
+}

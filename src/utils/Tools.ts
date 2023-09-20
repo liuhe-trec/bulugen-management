@@ -9,10 +9,10 @@ let cachePreventNum = 0
 const iTools = {
   //显示全局遮罩
   showLoadMask() {
-    console.log('showLoadMask')
+    // console.log('showLoadMask')
   },
   hideLoadMask() {
-    console.log('hideLoadMask')
+    // console.log('hideLoadMask')
   },
   addCachePrevent(url: string = ''): string {
     const queryString = url.indexOf('?')
@@ -21,6 +21,18 @@ const iTools = {
       'cp=' +
       (cachePreventNum++ + cachePreventRandom)
     return url
+  },
+  showSuccessMsg(msg: string) {
+    ElMessage({
+      type: 'success',
+      message: lpk(msg)
+    })
+  },
+  showErrMsg(msg: string) {
+    ElMessage({
+      type: 'error',
+      message: lpk(msg)
+    })
   },
   showError(title: string = '', msg: string = '') {
     // alert(`${title}: ${msg}`)
@@ -42,7 +54,7 @@ const iTools = {
     title = lpk(title)
     const content = lpk(res.msg) || ''
     if (false !== options.isShowInfo) {
-      Tools.showError(title,content)
+      Tools.showError(title, content)
     }
     window.console && window.console.log && console.log(res)
     const errorInfo = `${title}:${content}`

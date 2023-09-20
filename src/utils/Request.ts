@@ -138,7 +138,7 @@ const Ajax = {
       }, 200)
     }
     // 判断是否需要防缓存
-    false !== isNeedCachePrevent && (url = Tools.addCachePrevent(url))
+    isNeedCachePrevent !== undefined && (false !== isNeedCachePrevent) && (url = Tools.addCachePrevent(url))
     // 是否需要json stringify处理
     isNeedJsonStringify && (params = JSON.stringify(params))
     // 是否需要qs.stringify
